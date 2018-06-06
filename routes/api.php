@@ -16,12 +16,12 @@ Route::name('api.')->namespace('Api')->group(function () {
     // Unprotected routes
     Route::namespace('Auth')->group(function () {
         Route::post('signin', 'SignInController@signIn')->name('signin');
-        Route::post('register', 'RegisterController@Register')->name('register');
+        Route::post('register', 'RegisterController@register')->name('register');
     });
 
     // Protected routes
     Route::middleware('auth:api')->group(function () {
-         Route::get('me', 'Auth\MeController@Me')->name('me');
-
+        Route::get('me', 'Auth\MeController@me')->name('me');
+        Route::post('logout', 'Auth\LogoutController@logout')->name('logout');
     });
 });

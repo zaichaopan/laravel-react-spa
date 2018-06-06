@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Redirect, } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 const propTypes = {
-    auth: PropTypes.object.isRequired
+    auth: PropTypes.object.isRequired,
+    loading: PropTypes.bool.isRequired
 };
 
 class Home extends Component {

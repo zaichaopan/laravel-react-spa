@@ -9,7 +9,7 @@ use App\Http\Resources\UserResource;
 
 class RegisterController extends Controller
 {
-    public function Register(Request $request)
+    public function register(Request $request)
     {
         $this->validate($request, [
             'email' => 'email|required|unique:users,email',
