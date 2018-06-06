@@ -29,10 +29,10 @@ class Register extends Component {
 
     render() {
         return (
-            <div className="flex justify-center items-center w-full flex-col py-4">
+            <div className="flex justify-center items-center w-full flex-col py-4 min-h-screen bg-grey-lighter">
                 <form onSubmit={e => this.handleSubmit(e)}
                     method="POST"
-                    className="border rounded border-grey-light w-3/4 sm:w-1/2 lg:w-1/4 xl:w-1/3 p-8">
+                    className="bg-white border rounded border-grey-light w-3/4 sm:w-1/2 lg:w-2/5 xl:w-1/4 px-8 py-4">
                     <h2 className="text-center mb-4 text-grey-darker">Register</h2>
                     <div className="mb-4">
                         <label className="block text-grey-darker text-sm font-bold mb-2" htmlFor="username">
@@ -46,7 +46,8 @@ class Register extends Component {
                             className="appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight"
                             id="username"
                             placeholder="jane doe"
-                            required />
+                            required
+                            autoFocus />
                     </div>
 
                     <div className="mb-4">
@@ -71,7 +72,7 @@ class Register extends Component {
                             onChange={e => this.handleInputChange(e)}
                             type="password"
                             name="password"
-                            className="appearance-none border rounded w-full py-2 px-3 text-grey-darker mb-3 leading-tight"
+                            className="appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight"
                             id="password"
                             required />
                     </div>
@@ -87,13 +88,14 @@ class Register extends Component {
                             id="password-confirmation" type="password" required />
                     </div>
 
-                    <div className="mb-6">
+                    <div className="mb-2">
                         <button className="border rounded-full p-3 text-white bg-indigo w-full font-bold hover:bg-indigo-dark">Register</button>
                     </div>
                 </form>
 
-                <div className="p-4 text-grey-dark">
-                    Already have an account? <Link to="/signin" className="no-underline text-grey-darker">Sign in</Link>
+                <div className="p-4 text-grey-dark text-sm">
+                    <span>Already have an account? </span>
+                    <Link to="/signin" className="no-underline text-grey-darker font-bold"> Sign in</Link>
                 </div>
             </div>
 

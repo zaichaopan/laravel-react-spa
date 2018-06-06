@@ -37,15 +37,12 @@ class App extends Component {
         return (
             <Router>
                 <div className="flex flex-col min-h-screen">
-                    <Nav />
-                    <div className="flex flex-1">
-                        <Route exact path="/" component={Welcome} />
-                        <Route path="/register" component={Register} />
-                        <Route path="/signin" component={SignIn} />
-                        <AuthRoute path="/home" component={Home} />
-                    </div>
-                    <Footer />
+                    <Route exact path="/" component={Welcome} />
+                    <Route path="/register" component={Register} />
+                    <Route path="/signin" component={SignIn} />
+                    <AuthRoute path="/home" component={Home} />
                 </div>
+
             </Router>
         );
     }

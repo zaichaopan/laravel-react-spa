@@ -1,13 +1,7 @@
 import React from "react";
 import store from '../store'
-import {
-    BrowserRouter as Router,
-    Route,
-    Link,
-    Redirect,
-    withRouter
-} from "react-router-dom";
-
+import { Route, Redirect } from "react-router-dom";
+import AppLayoutRoute from './ AppLayoutRoute';
 
 export default ({ component: Component, ...rest }) => (
     <Route
@@ -15,10 +9,8 @@ export default ({ component: Component, ...rest }) => (
         render={props => {
             const { auth: { authenticated }, share: { loading } } = store.getState();
 
-            console.log(loading);
-
             return loading || authenticated ? (
-                <Component {...props} />
+                <AppLayoutRoute component={Component} {...props} />
             ) : (
                     <Redirect
                         to={{
@@ -32,3 +24,5 @@ export default ({ component: Component, ...rest }) => (
         }
     />
 );
+
+// {/* <Component {...props} /> */}
