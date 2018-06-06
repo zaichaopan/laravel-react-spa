@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { signInUser } from '../actions/auth';
+import NotFound from './404';
+import { getIntendedUrl } from '../helpers';
 
 class SignIn extends Component {
     constructor(props) {
@@ -14,7 +16,9 @@ class SignIn extends Component {
     }
 
     signInSuccess() {
-        this.props.history.push('/home')
+        getIntendedUrl().then(url => {
+            this.props.history.push(url)
+        });
     }
 
     handleSubmit(e) {

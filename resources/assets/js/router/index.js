@@ -7,6 +7,7 @@ import Register from '../pages/Register';
 import NotFound from '../pages/404';
 import PropTypes from 'prop-types';
 import Home from '../pages/Home';
+import Profile from '../pages/Profile';
 import AuthRoute from './AuthRoute';
 import { connect } from 'react-redux';
 import { setLoading } from '../actions/share';
@@ -47,6 +48,7 @@ class App extends Component {
                         <Route path="/register" component={Register} />
                         <Route path="/signin" component={SignIn} />
                         <AuthRoute path="/home" component={Home} />
+                        <AuthRoute path="/profile" component={Profile} />
                         <Route component={NotFound} />
                     </Switch>
                 </div>

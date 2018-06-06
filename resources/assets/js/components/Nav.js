@@ -23,6 +23,7 @@ class Nav extends Component {
             ? (
                 <ul>
                     <li><Link to="/home">Home</Link></li>
+                    <li><Link to="/profile">profile</Link></li>
                     <li onClick={() => this.handleLogout()}><Link to="/logout">Logout</Link></li>
                 </ul>)
             : (
