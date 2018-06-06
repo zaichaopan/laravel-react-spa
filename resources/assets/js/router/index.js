@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Link, withRouter } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Welcome from '../pages/Welcome';
 import SignIn from '../pages/SignIn';
 import Register from '../pages/Register';
+import NotFound from '../pages/404';
 import PropTypes from 'prop-types';
 import Home from '../pages/Home';
 import AuthRoute from './AuthRoute';
@@ -32,15 +33,23 @@ class App extends Component {
     }
 
     render() {
+        if (this.props.loading) {
+            return (
+                <div>loading ...</div>
+            )
+        }
+
         return (
             <Router>
                 <div className="flex flex-col min-h-screen">
-                    <Route exact path="/" component={Welcome} />
-                    <Route path="/register" component={Register} />
-                    <Route path="/signin" component={SignIn} />
-                    <AuthRoute path="/home" component={Home} />
+                    <Switch>
+                        <Route exact path="/" component={Welcome} />
+                        <Route path="/register" component={Register} />
+                        <Route path="/signin" component={SignIn} />
+                        <AuthRoute path="/home" component={Home} />
+                        <Route component={NotFound} />
+                    </Switch>
                 </div>
-
             </Router>
         );
     }
@@ -56,4 +65,6 @@ const mapDispatchToProps = {
     setUserData
 };
 
-export default connect(null, mapDispatchToProps)(App);
+const mapStateToProps = ({ share: { loading } }) => ({ loading })
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
