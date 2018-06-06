@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Link, withRouter } from "react-router-dom";
-import Welcome from '../components/Welcome';
-import SignIn from '../components/SignIn';
-import Register from '../components/Register';
-import Nav from '../components/Nav';
-import Footer from '../components/Footer';
+import Welcome from '../pages/Welcome';
+import SignIn from '../pages/SignIn';
+import Register from '../pages/Register';
 import PropTypes from 'prop-types';
-import Home from '../components/Home';
+import Home from '../pages/Home';
 import AuthRoute from './AuthRoute';
 import { connect } from 'react-redux';
 import { setLoading } from '../actions/share';
