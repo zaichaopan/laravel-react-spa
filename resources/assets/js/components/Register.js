@@ -23,28 +23,8 @@ class Register extends Component {
         this.props.registerUser(this.state, () => { this.registerSuccess() });
     }
 
-    handleNameChange(e) {
-        this.setState({
-            name: e.target.value
-        })
-    }
-
-    handleEmailChange(e) {
-        this.setState({
-            email: e.target.value
-        })
-    }
-
-    handlePasswordChange(e) {
-        this.setState({
-            password: e.target.value
-        })
-    }
-
-    handlePasswordConfirmationChange(e) {
-        this.setState({
-            password_confirmation: e.target.value
-        })
+    handleInputChange(e) {
+        this.setState({ [e.target.name]: e.target.value });
     }
 
     render() {
@@ -60,9 +40,9 @@ class Register extends Component {
                        </label>
                         <input
                             value={this.state.name}
-                            onChange={e => this.handleNameChange(e)}
+                            onChange={e => this.handleInputChange(e)}
                             type="text"
-                            name="username"
+                            name="name"
                             className="appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight"
                             id="username"
                             placeholder="jane doe"
@@ -75,7 +55,7 @@ class Register extends Component {
                        </label>
                         <input
                             value={this.state.email}
-                            onChange={e => this.handleEmailChange(e)}
+                            onChange={e => this.handleInputChange(e)}
                             name="email"
                             className="appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight"
                             id="email"
@@ -88,7 +68,7 @@ class Register extends Component {
                         <label className="block text-grey-darker text-sm font-bold mb-2" htmlFor="password"> Password </label>
                         <input
                             value={this.state.password}
-                            onChange={e => this.handlePasswordChange(e)}
+                            onChange={e => this.handleInputChange(e)}
                             type="password"
                             name="password"
                             className="appearance-none border rounded w-full py-2 px-3 text-grey-darker mb-3 leading-tight"
@@ -100,7 +80,7 @@ class Register extends Component {
                         <label className="block text-grey-darker text-sm font-bold mb-2" htmlFor="password-confirmation"> Password confirmation </label>
                         <input
                             value={this.state.password_confirmation}
-                            onChange={e => this.handlePasswordConfirmationChange(e)}
+                            onChange={e => this.handleInputChange(e)}
                             type="password"
                             name="password_confirmation"
                             className="appearance-none border rounded w-full py-2 px-3 text-grey-darker mb-3 leading-tight"
@@ -121,7 +101,5 @@ class Register extends Component {
     }
 }
 
-const mapDispatchToProps = {
-    registerUser
-};
+const mapDispatchToProps = { registerUser };
 export default connect(null, mapDispatchToProps)(withRouter(Register));

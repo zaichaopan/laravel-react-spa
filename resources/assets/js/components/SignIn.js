@@ -23,16 +23,8 @@ class SignIn extends Component {
 
     }
 
-    handleEmailChange(e) {
-        this.setState({
-            email: e.target.value
-        })
-    }
-
-    handlePasswordChange(e) {
-        this.setState({
-            password: e.target.value
-        })
+    handleInputChange(e) {
+        this.setState({ [e.target.name]: e.target.value });
     }
 
     render() {
@@ -47,7 +39,7 @@ class SignIn extends Component {
                        </label>
                         <input
                             value={this.state.email}
-                            onChange={e => this.handleEmailChange(e)}
+                            onChange={e => this.handleInputChange(e)}
                             type="email"
                             name="email"
                             className="appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight" id="email" type="text" placeholder="jane@example.com" required />
@@ -57,7 +49,7 @@ class SignIn extends Component {
                         <label className="block text-grey-darker text-sm font-bold mb-2" htmlFor="password"> Password </label>
                         <input
                             value={this.state.password}
-                            onChange={e => this.handlePasswordChange(e)}
+                            onChange={e => this.handleInputChange(e)}
                             type="password"
                             name="password"
                             className="appearance-none border rounded w-full py-2 px-3 text-grey-darker mb-3 leading-tight" id="password" type="password" required />

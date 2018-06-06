@@ -64985,18 +64985,9 @@ var SignIn = function (_Component) {
             });
         }
     }, {
-        key: 'handleEmailChange',
-        value: function handleEmailChange(e) {
-            this.setState({
-                email: e.target.value
-            });
-        }
-    }, {
-        key: 'handlePasswordChange',
-        value: function handlePasswordChange(e) {
-            this.setState({
-                password: e.target.value
-            });
+        key: 'handleInputChange',
+        value: function handleInputChange(e) {
+            this.setState(_defineProperty({}, e.target.name, e.target.value));
         }
     }, {
         key: 'render',
@@ -65030,7 +65021,7 @@ var SignIn = function (_Component) {
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', (_React$createElement = {
                             value: this.state.email,
                             onChange: function onChange(e) {
-                                return _this3.handleEmailChange(e);
+                                return _this3.handleInputChange(e);
                             },
                             type: 'email',
                             name: 'email',
@@ -65047,7 +65038,7 @@ var SignIn = function (_Component) {
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', (_React$createElement2 = {
                             value: this.state.password,
                             onChange: function onChange(e) {
-                                return _this3.handlePasswordChange(e);
+                                return _this3.handleInputChange(e);
                             },
                             type: 'password',
                             name: 'password',
@@ -66021,32 +66012,9 @@ var Register = function (_Component) {
             });
         }
     }, {
-        key: 'handleNameChange',
-        value: function handleNameChange(e) {
-            this.setState({
-                name: e.target.value
-            });
-        }
-    }, {
-        key: 'handleEmailChange',
-        value: function handleEmailChange(e) {
-            this.setState({
-                email: e.target.value
-            });
-        }
-    }, {
-        key: 'handlePasswordChange',
-        value: function handlePasswordChange(e) {
-            this.setState({
-                password: e.target.value
-            });
-        }
-    }, {
-        key: 'handlePasswordConfirmationChange',
-        value: function handlePasswordConfirmationChange(e) {
-            this.setState({
-                password_confirmation: e.target.value
-            });
+        key: 'handleInputChange',
+        value: function handleInputChange(e) {
+            this.setState(_defineProperty({}, e.target.name, e.target.value));
         }
     }, {
         key: 'render',
@@ -66080,10 +66048,10 @@ var Register = function (_Component) {
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
                             value: this.state.name,
                             onChange: function onChange(e) {
-                                return _this3.handleNameChange(e);
+                                return _this3.handleInputChange(e);
                             },
                             type: 'text',
-                            name: 'username',
+                            name: 'name',
                             className: 'appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight',
                             id: 'username',
                             placeholder: 'jane doe',
@@ -66100,7 +66068,7 @@ var Register = function (_Component) {
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
                             value: this.state.email,
                             onChange: function onChange(e) {
-                                return _this3.handleEmailChange(e);
+                                return _this3.handleInputChange(e);
                             },
                             name: 'email',
                             className: 'appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight',
@@ -66120,7 +66088,7 @@ var Register = function (_Component) {
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
                             value: this.state.password,
                             onChange: function onChange(e) {
-                                return _this3.handlePasswordChange(e);
+                                return _this3.handleInputChange(e);
                             },
                             type: 'password',
                             name: 'password',
@@ -66139,7 +66107,7 @@ var Register = function (_Component) {
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', (_React$createElement = {
                             value: this.state.password_confirmation,
                             onChange: function onChange(e) {
-                                return _this3.handlePasswordConfirmationChange(e);
+                                return _this3.handleInputChange(e);
                             },
                             type: 'password',
                             name: 'password_confirmation',
@@ -66173,9 +66141,7 @@ var Register = function (_Component) {
     return Register;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
-var mapDispatchToProps = {
-    registerUser: __WEBPACK_IMPORTED_MODULE_3__actions_auth__["h" /* registerUser */]
-};
+var mapDispatchToProps = { registerUser: __WEBPACK_IMPORTED_MODULE_3__actions_auth__["h" /* registerUser */] };
 /* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_2_react_redux__["b" /* connect */])(null, mapDispatchToProps)(Object(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["e" /* withRouter */])(Register)));
 
 /***/ }),
