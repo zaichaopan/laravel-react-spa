@@ -36,7 +36,7 @@ class App extends Component {
     render() {
         if (this.props.loading) {
             return (
-                <div>loading ...</div>
+                <div className="p-2">loading...</div>
             )
         }
 

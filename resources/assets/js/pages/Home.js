@@ -11,6 +11,7 @@ const propTypes = {
 class Home extends Component {
     constructor(props) {
         super(props);
+        this.state = { user: this.props.auth.user };
     }
 
     render() {
@@ -19,8 +20,8 @@ class Home extends Component {
         }
 
         return (
-            <div>
-                <h1>This is home</h1>
+            <div className="container p-2 mx-auto flex flex-col">
+                <h1>Welcome back {this.state.user.name}</h1>
             </div>
         )
     }
