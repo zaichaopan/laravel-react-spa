@@ -65,10 +65,10 @@ export const clearAuth = () => dispatch => {
     dispatch(setHttpToken(null));
 }
 
-export const logoutUser = () => dispatch => {
+export const logoutUser = (cb) => dispatch => {
     return axios.post('/api/logout').then((response) => {
-        return Promise.resolve('logout success');
+        cb();
     }).catch(err => {
-        return Promise.reject('logout failed');
+        cb();
     });
 }

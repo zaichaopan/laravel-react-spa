@@ -11,17 +11,11 @@ const propTypes = {
 class Nav extends Component {
     redirectToSignIn() {
         this.props.clearAuth();
-        this.props.history.push('/signin');
+        this.props.history.push('/');
     }
 
     handleLogout() {
-        this.props.logoutUser()
-            .then(res => {
-                this.redirectToSignIn()
-            })
-            .catch(err => {
-                this.redirectToSignIn();
-            });
+        this.props.logoutUser(() => this.redirectToSignIn());
     }
 
     render() {

@@ -755,12 +755,12 @@ var clearAuth = function clearAuth() {
     };
 };
 
-var logoutUser = function logoutUser() {
+var logoutUser = function logoutUser(cb) {
     return function (dispatch) {
         return axios.post('/api/logout').then(function (response) {
-            return Promise.resolve('logout success');
+            cb();
         }).catch(function (err) {
-            return Promise.reject('logout failed');
+            cb();
         });
     };
 };
@@ -66221,18 +66221,15 @@ var Nav = function (_Component) {
         key: 'redirectToSignIn',
         value: function redirectToSignIn() {
             this.props.clearAuth();
-            this.props.history.push('/signin');
+            this.props.history.push('/');
         }
     }, {
         key: 'handleLogout',
         value: function handleLogout() {
             var _this2 = this;
 
-            console.log('logout');
-            this.props.logoutUser().then(function (res) {
-                _this2.redirectToSignIn();
-            }).catch(function (err) {
-                _this2.redirectToSignIn();
+            this.props.logoutUser(function () {
+                return _this2.redirectToSignIn();
             });
         }
     }, {
