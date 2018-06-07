@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
 
 const propTypes = {
   auth: PropTypes.object.isRequired,
@@ -10,10 +9,6 @@ const propTypes = {
 
 class Profile extends Component {
   render () {
-    if (!this.props.auth.authenticated) {
-      return <Redirect to='/signin' />;
-    }
-
     return (
       <div className="container p-2 mx-auto flex flex-col">
         <h1>This is Profile page</h1>

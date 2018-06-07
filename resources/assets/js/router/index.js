@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 import { setLoading } from '../actions/share';
 import { setToken, fetchUser, setUserData, setAuthenticated, clearAuth, setHttpToken } from '../actions/auth';
 import { checkTokenExists } from '../helpers';
-import GuestRoute from './ GuestRoute';
+import GuestRoute from './GuestRoute';
 
 const propTypes = {
   setToken: PropTypes.func.isRequired,

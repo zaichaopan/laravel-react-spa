@@ -1,7 +1,7 @@
 import React from 'react';
 import store from '../store';
 import { Route, Redirect } from 'react-router-dom';
-import AppLayoutRoute from './ AppLayoutRoute';
+import AppLayoutRoute from './AppLayoutRoute';
 import { setIntendedUrl } from '../helpers';
 import PropTypes from 'prop-types';
 
@@ -15,13 +15,13 @@ const AuthRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={props => {
-      const { auth: { authenticated }, share: { loading } } = store.getState();
+      const { auth: { authenticated } } = store.getState();
 
       if (!authenticated) {
         setIntendedUrl(props.location.pathname);
       }
 
-      return loading || authenticated ? (
+      return authenticated ? (
         <AppLayoutRoute component={Component} {...props} />
       ) : (
         <Redirect

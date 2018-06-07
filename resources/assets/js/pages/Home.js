@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
 import DocumentTitle from 'react-document-title';
 
 const propTypes = {
@@ -16,10 +15,6 @@ class Home extends Component {
   }
 
   render () {
-    if (!this.props.auth.authenticated) {
-      return <Redirect to='/signin' />;
-    }
-
     return (
       <DocumentTitle title={`Home - ${window.App.name}`}>
         <div className="container p-2 mx-auto flex flex-col">
