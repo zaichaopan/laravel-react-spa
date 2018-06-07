@@ -12,6 +12,11 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
+    <script>
+        window.App = {!! json_encode([
+                'name' => env('APP_NAME')
+        ]) !!};
+    </script>
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
@@ -21,8 +26,10 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-    <body class="font-sans h-full text-grey-darkest">
-        <div id="app" class="flex flex-col">
-        </div>
-    </body>
+
+<body class="font-sans h-full text-grey-darkest">
+    <div id="app" class="flex flex-col">
+    </div>
+</body>
+
 </html>

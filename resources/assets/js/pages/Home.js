@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
+import DocumentTitle from 'react-document-title';
 
 const propTypes = {
   auth: PropTypes.object.isRequired,
@@ -20,9 +21,11 @@ class Home extends Component {
     }
 
     return (
-      <div className="container p-2 mx-auto flex flex-col">
-        <h1>Welcome back {this.state.user.name}</h1>
-      </div>
+      <DocumentTitle title={`Home - ${window.App.name}`}>
+        <div className="container p-2 mx-auto flex flex-col">
+          <h1>Welcome back {this.state.user.name}</h1>
+        </div>
+      </DocumentTitle>
     );
   }
 }
