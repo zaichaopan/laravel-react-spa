@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 import { setLoading } from '../actions/share';
 import { setToken, fetchUser, setUserData, setAuthenticated, clearAuth, setHttpToken } from '../actions/auth';
 import { checkTokenExists } from '../helpers';
+import GuestRoute from './ GuestRoute';
 
 const propTypes = {
   setToken: PropTypes.func.isRequired,
@@ -56,16 +57,15 @@ class App extends Component {
       <Router>
         <div className="flex flex-col min-h-screen">
           <Switch>
-            <Route exact path="/" component={Welcome} />
-            <Route path="/register" component={Register} />
-            <Route path="/signin" component={SignIn} />
+            <GuestRoute exact path="/" component={Welcome} />
+            <GuestRoute path="/register" component={Register} />
+            <GuestRoute path="/signin" component={SignIn} />
             <AuthRoute path="/home" component={Home} />
             <AuthRoute path="/profile/:id" component={Profile} />
             <Route component={NotFound} />
           </Switch>
         </div>
       </Router>
-
     );
   }
 }

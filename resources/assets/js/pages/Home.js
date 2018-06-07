@@ -16,7 +16,7 @@ class Home extends Component {
   }
 
   render () {
-    if (!this.props.loading && !this.props.auth.authenticated) {
+    if (!this.props.auth.authenticated) {
       return <Redirect to='/signin' />;
     }
 

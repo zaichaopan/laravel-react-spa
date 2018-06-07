@@ -4,12 +4,13 @@ Starter Boilerplate SPA made with Laravel and React.
 
 ## Features
 
-- Laravel 5.6
-- React, Redux, React Router
+- Laravel 5.6, React, Redux, React Router
 - Authentication with JWT
 - Login, register
+- Flexible Page Layout
+- Flexible, Protected Routing
 - Tailwind CSS
-- Eslint
+- ESlint
 
 ## Installation
 
