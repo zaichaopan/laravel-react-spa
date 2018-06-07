@@ -37,12 +37,11 @@ class ForgotPassword extends Component {
       <DocumentTitle title={`Forgot password - ${window.App.name}`}>
         <div className="flex justify-center items-center w-full py-4 flex-col min-h-screen bg-grey-lighter">
 
-          {
-            this.state.resetMessage !== '' && (
-              <div className="bg-white border-l-4 border-blue text-sm text-grey-darker p-4 mb-4 w-3/4 sm:w-1/2 lg:w-2/5 xl:w-1/3" role="alert">
-                <p> {this.state.resetMessage}</p>
-              </div>
-            )
+          {this.state.resetMessage !== '' && (
+            <div className="bg-white border-l-4 border-blue text-sm text-grey-darker p-4 mb-4 w-3/4 sm:w-1/2 lg:w-2/5 xl:w-1/3" role="alert">
+              <p> {this.state.resetMessage}</p>
+            </div>
+          )
           }
 
           <form
