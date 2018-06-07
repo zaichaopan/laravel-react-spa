@@ -26,5 +26,5 @@ class Home extends Component {
 }
 
 Home.propTypes = propTypes;
-const mapStateToProps = ({ auth, share: { loading } }) => ({ auth, loading });
+const mapStateToProps = ({ auth, loading }) => ({ auth, loading });
 export default connect(mapStateToProps)(Home);

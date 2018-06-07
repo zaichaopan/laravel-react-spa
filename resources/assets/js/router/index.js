@@ -9,7 +9,7 @@ import Home from '../pages/Home';
 import Profile from '../pages/Profile';
 import AuthRoute from './AuthRoute';
 import { connect } from 'react-redux';
-import { setLoading } from '../actions/share';
+import { setLoading } from '../actions/loading';
 import { initAuthFromExistingToken } from '../actions/auth';
 import GuestRoute from './GuestRoute';
 
@@ -55,6 +55,6 @@ const mapDispatchToProps = {
   initAuthFromExistingToken
 };
 
-const mapStateToProps = ({ share: { loading } }) => ({ loading });
+const mapStateToProps = ({ loading }) => ({ loading });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

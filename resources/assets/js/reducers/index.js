@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import auth from './auth';
-import share from './share';
+import loading from './loading';
 
 export default combineReducers({
   auth,
-  share
+  loading
 });

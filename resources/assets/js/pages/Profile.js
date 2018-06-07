@@ -19,6 +19,6 @@ class Profile extends Component {
 
 Profile.propTypes = propTypes;
 
-const mapStateToProps = ({ auth, share: { loading } }) => ({ auth, loading });
+const mapStateToProps = ({ auth, loading }) => ({ auth, loading });
 
 export default connect(mapStateToProps)(Profile);

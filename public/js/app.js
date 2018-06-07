@@ -1094,16 +1094,6 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 var INTENDED_URL = 'intended_url';
 var DEFAULT_INTENDED_URL = '/home';
 
-var checkTokenExists = function checkTokenExists() {
-  return __WEBPACK_IMPORTED_MODULE_0_localforage___default.a.getItem('authtoken').then(function (token) {
-    if (Object(__WEBPACK_IMPORTED_MODULE_1_lodash__["isEmpty"])(token)) {
-      return Promise.reject(new Error('invalid token'));
-    }
-
-    return Promise.resolve(token);
-  });
-};
-
 var setLocalForageToken = function setLocalForageToken(token) {
   if (Object(__WEBPACK_IMPORTED_MODULE_1_lodash__["isEmpty"])(token)) {
     __WEBPACK_IMPORTED_MODULE_0_localforage___default.a.removeItem('authtoken', token);
@@ -1118,6 +1108,16 @@ var setHttpToken = function setHttpToken(token) {
   }
 
   window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+};
+
+var checkTokenExists = function checkTokenExists() {
+  return __WEBPACK_IMPORTED_MODULE_0_localforage___default.a.getItem('authtoken').then(function (token) {
+    if (Object(__WEBPACK_IMPORTED_MODULE_1_lodash__["isEmpty"])(token)) {
+      return Promise.reject(new Error('invalid token'));
+    }
+
+    return Promise.resolve(token);
+  });
 };
 
 var setToken = function setToken(token) {
@@ -58717,14 +58717,14 @@ function symbolObservablePonyfill(root) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_redux__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__auth__ = __webpack_require__(97);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__share__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__loading__ = __webpack_require__(99);
 
 
 
 
 /* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_0_redux__["c" /* combineReducers */])({
   auth: __WEBPACK_IMPORTED_MODULE_1__auth__["a" /* default */],
-  share: __WEBPACK_IMPORTED_MODULE_2__share__["a" /* default */]
+  loading: __WEBPACK_IMPORTED_MODULE_2__loading__["a" /* default */]
 }));
 
 /***/ }),
@@ -61558,16 +61558,16 @@ module.exports = localforage_js;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__actions_share__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__actions_loading__ = __webpack_require__(39);
 
 
 /* harmony default export */ __webpack_exports__["a"] = (function () {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { loading: true };
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
   var action = arguments[1];
 
   switch (action.type) {
-    case __WEBPACK_IMPORTED_MODULE_0__actions_share__["a" /* SET_LOADING */]:
-      return Object.assign({}, state, { loading: action.status });
+    case __WEBPACK_IMPORTED_MODULE_0__actions_loading__["a" /* SET_LOADING */]:
+      return action.status;
     default:
       return state;
   }
@@ -61617,7 +61617,7 @@ thunk.withExtraArgument = createThunkMiddleware;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_Profile__ = __webpack_require__(154);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__AuthRoute__ = __webpack_require__(155);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_react_redux__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__actions_share__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__actions_loading__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__actions_auth__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__GuestRoute__ = __webpack_require__(159);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -61705,12 +61705,12 @@ var App = function (_Component) {
 App.propTypes = propTypes;
 
 var mapDispatchToProps = {
-  setLoading: __WEBPACK_IMPORTED_MODULE_11__actions_share__["b" /* setLoading */],
+  setLoading: __WEBPACK_IMPORTED_MODULE_11__actions_loading__["b" /* setLoading */],
   initAuthFromExistingToken: __WEBPACK_IMPORTED_MODULE_12__actions_auth__["c" /* initAuthFromExistingToken */]
 };
 
 var mapStateToProps = function mapStateToProps(_ref) {
-  var loading = _ref.share.loading;
+  var loading = _ref.loading;
   return { loading: loading };
 };
 
@@ -66953,7 +66953,7 @@ var Home = function (_Component) {
 Home.propTypes = propTypes;
 var mapStateToProps = function mapStateToProps(_ref) {
   var auth = _ref.auth,
-      loading = _ref.share.loading;
+      loading = _ref.loading;
   return { auth: auth, loading: loading };
 };
 /* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_1_react_redux__["b" /* connect */])(mapStateToProps)(Home));
@@ -67016,7 +67016,7 @@ Profile.propTypes = propTypes;
 
 var mapStateToProps = function mapStateToProps(_ref) {
   var auth = _ref.auth,
-      loading = _ref.share.loading;
+      loading = _ref.loading;
   return { auth: auth, loading: loading };
 };
 

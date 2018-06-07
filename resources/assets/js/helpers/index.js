@@ -4,16 +4,6 @@ import { isEmpty } from 'lodash';
 const INTENDED_URL = 'intended_url';
 const DEFAULT_INTENDED_URL = '/home';
 
-export const checkTokenExists = () => {
-  return localforage.getItem('authtoken').then((token) => {
-    if (isEmpty(token)) {
-      return Promise.reject(new Error('invalid token'));
-    }
-
-    return Promise.resolve(token);
-  });
-};
-
 const setLocalForageToken = token => {
   if (isEmpty(token)) {
     localforage.removeItem('authtoken', token);
@@ -28,6 +18,16 @@ const setHttpToken = (token) => {
   }
 
   window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+};
+
+export const checkTokenExists = () => {
+  return localforage.getItem('authtoken').then((token) => {
+    if (isEmpty(token)) {
+      return Promise.reject(new Error('invalid token'));
+    }
+
+    return Promise.resolve(token);
+  });
 };
 
 export const setToken = token => {
