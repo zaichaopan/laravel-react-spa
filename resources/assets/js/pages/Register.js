@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import DocumentTitle from 'react-document-title';
-import { registerUser } from '../actions/auth';
-import { destructServerErrors, hasError, getError } from '../helpers';
 import PropTypes from 'prop-types';
+import { registerUser } from '../actions/auth';
+import { destructServerErrors, hasError, getError } from '../helpers/error';
 
 const propTypes = {
   registerUser: PropTypes.func.isRequired,
@@ -54,7 +54,7 @@ class Register extends Component {
             <h2 className="text-center mb-4 text-grey-darker">Register</h2>
             <div className="mb-4">
               <label className="block text-grey-darker text-sm font-bold mb-2" htmlFor="username">
-                                Username
+                Username
               </label>
               <input
                 value={this.state.name}
@@ -68,13 +68,13 @@ class Register extends Component {
                 autoFocus />
 
               {hasError(this.state.errors, 'name') &&
-                                <p className="text-red text-xs pt-2">{getError(this.state.errors, 'name')}</p>
+                <p className="text-red text-xs pt-2">{getError(this.state.errors, 'name')}</p>
               }
             </div>
 
             <div className="mb-4">
               <label className="block text-grey-darker text-sm font-bold mb-2" htmlFor="email">
-                                Email
+                Email
               </label>
               <input
                 value={this.state.email}
@@ -87,7 +87,7 @@ class Register extends Component {
                 required />
 
               {hasError(this.state.errors, 'email') &&
-                                <p className="text-red text-xs pt-2">{getError(this.state.errors, 'email')}</p>
+                <p className="text-red text-xs pt-2">{getError(this.state.errors, 'email')}</p>
               }
             </div>
 
@@ -104,7 +104,7 @@ class Register extends Component {
                 required />
 
               {hasError(this.state.errors, 'password') &&
-                                <p className="text-red text-xs pt-2">{getError(this.state.errors, 'password')}</p>
+                <p className="text-red text-xs pt-2">{getError(this.state.errors, 'password')}</p>
               }
             </div>
 

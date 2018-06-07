@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import DocumentTitle from 'react-document-title';
 import { signInUser } from '../actions/auth';
-import { getIntendedUrl, destructServerErrors, hasError, getError } from '../helpers';
-import PropTypes from 'prop-types';
+import { getIntendedUrl } from '../helpers/auth';
+import { destructServerErrors, hasError, getError } from '../helpers/error';
 
 const propTypes = {
   signInUser: PropTypes.func.isRequired,
@@ -52,7 +53,7 @@ class SignIn extends Component {
             <h2 className="text-center mb-4 text-grey-darker">Sign in</h2>
             <div className="mb-4">
               <label className="block text-grey-darker text-sm font-bold mb-2" htmlFor="email">
-                                Email address
+                Email address
               </label>
               <input
                 value={this.state.email}
@@ -67,7 +68,7 @@ class SignIn extends Component {
               />
 
               {hasError(this.state.errors, 'email') &&
-                                <p className="text-red text-xs pt-2">{getError(this.state.errors, 'email')}</p>
+                <p className="text-red text-xs pt-2">{getError(this.state.errors, 'email')}</p>
               }
 
             </div>

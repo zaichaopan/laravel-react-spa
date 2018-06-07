@@ -1,4 +1,4 @@
-import { checkTokenExists, setToken } from '../helpers';
+import { checkTokenExists, setToken } from '../helpers/auth';
 
 export const SET_USER_DATA = 'SET_USER_DATA';
 export const SET_AUTHENTICATED = 'SET_AUTHENTICATED';
