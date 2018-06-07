@@ -1,4 +1,4 @@
-# Laravel-React SAP
+# Laravel-React SPA
 
 Starter Boilerplate SPA made with Laravel and React.
 
@@ -9,6 +9,7 @@ Starter Boilerplate SPA made with Laravel and React.
 - Authentication with JWT
 - Login, register
 - Tailwind CSS
+- Eslint
 
 ## Installation
 
