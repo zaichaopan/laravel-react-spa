@@ -13,4 +13,4 @@
 
 Route::get('/{uri?}', function () {
     return view('welcome');
-})->where('uri', '[\/\w\.-]*');
+})->where('uri', '(.*)');

@@ -30,7 +30,6 @@ Route::name('api.')->namespace('Api')->group(function () {
         Route::namespace('Auth')->group(function () {
             Route::get('me', 'MeController@me')->name('me');
             Route::post('logout', 'LogoutController@logout')->name('logout');
-            Route::patch('settings/password', 'PasswordController@update');
         });
     });
 });

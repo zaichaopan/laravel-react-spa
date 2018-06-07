@@ -4,6 +4,7 @@ import Welcome from '../pages/Welcome';
 import SignIn from '../pages/auth/SignIn';
 import Register from '../pages/auth/Register';
 import ForgotPassword from '../pages/auth/ForgotPassword';
+import ResetPassword from '../pages/auth/ResetPassword';
 import NotFound from '../pages/404';
 import PropTypes from 'prop-types';
 import Home from '../pages/Home';
@@ -40,6 +41,7 @@ class App extends Component {
             <GuestRoute path="/register" component={Register} />
             <GuestRoute path="/signin" component={SignIn} />
             <GuestRoute path="/forgot-password" component={ForgotPassword} />
+            <GuestRoute path="/password/reset/:token" component={ResetPassword} />
             <AuthRoute path="/home" component={Home} />
             <AuthRoute path="/profile/:id" component={Profile} />
             <Route component={NotFound} />
