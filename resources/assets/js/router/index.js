@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Welcome from '../pages/Welcome';
-import SignIn from '../pages/SignIn';
-import Register from '../pages/Register';
+import SignIn from '../pages/auth/SignIn';
+import Register from '../pages/auth/Register';
+import ForgotPassword from '../pages/auth/ForgotPassword';
 import NotFound from '../pages/404';
 import PropTypes from 'prop-types';
 import Home from '../pages/Home';
@@ -38,6 +39,7 @@ class App extends Component {
             <GuestRoute exact path="/" component={Welcome} />
             <GuestRoute path="/register" component={Register} />
             <GuestRoute path="/signin" component={SignIn} />
+            <GuestRoute path="/forgot-password" component={ForgotPassword} />
             <AuthRoute path="/home" component={Home} />
             <AuthRoute path="/profile/:id" component={Profile} />
             <Route component={NotFound} />

@@ -14,14 +14,23 @@
 
 Route::name('api.')->namespace('Api')->group(function () {
     // Unprotected routes
-    Route::namespace('Auth')->group(function () {
-        Route::post('signin', 'SignInController@signIn')->name('signin');
-        Route::post('register', 'RegisterController@register')->name('register');
+    Route::group(['middleware' => 'guest:api'], function () {
+        Route::namespace('Auth')->group(function () {
+            Route::post('signin', 'SignInController@signIn')->name('signin');
+            Route::post('register', 'RegisterController@register')->name('register');
+
+            // Password Reset Routes...
+            Route::post('password/email', 'ForgotPasswordController@sendResetLinkEmail');
+            Route::post('password/reset', 'ResetPasswordController@reset');
+        });
     });
 
     // Protected routes
     Route::middleware('auth:api')->group(function () {
-        Route::get('me', 'Auth\MeController@me')->name('me');
-        Route::post('logout', 'Auth\LogoutController@logout')->name('logout');
+        Route::namespace('Auth')->group(function () {
+            Route::get('me', 'MeController@me')->name('me');
+            Route::post('logout', 'LogoutController@logout')->name('logout');
+            Route::patch('settings/password', 'PasswordController@update');
+        });
     });
 });
