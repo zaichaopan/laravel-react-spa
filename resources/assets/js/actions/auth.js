@@ -1,17 +1,13 @@
+import { checkTokenExists, setToken } from '../helpers';
+
 export const SET_USER_DATA = 'SET_USER_DATA';
 export const SET_AUTHENTICATED = 'SET_AUTHENTICATED';
-export const SET_TOKEN = 'SET_TOKEN';
-export const SET_HTTP_TOKEN = 'SET_HTTP_TOKEN';
 
-export const setToken = token => ({
-  type: SET_TOKEN,
-  token
-});
-
-export const setHttpToken = token => ({
-  type: SET_HTTP_TOKEN,
-  token
-});
+const fetchUser = () => {
+  return window.axios.get('/api/me')
+    .then(({ data: { data } }) => Promise.resolve(data))
+    .catch(error => Promise.reject(error));
+};
 
 export const setUserData = user => ({
   type: SET_USER_DATA,
@@ -25,10 +21,9 @@ export const setAuthenticated = authenticated => ({
 
 export const signInUser = credentials => dispatch => {
   return window.axios.post('/api/signin', credentials).then(({ data: { data, meta } }) => {
+    setToken(meta.token);
     dispatch(setUserData(data));
     dispatch(setAuthenticated(true));
-    dispatch(setToken(meta.token));
-    dispatch(setHttpToken(meta.token));
     return Promise.resolve({ data, meta });
   }).catch(error => {
     return Promise.reject(error);
@@ -38,36 +33,46 @@ export const signInUser = credentials => dispatch => {
 export const registerUser = credentials => dispatch => {
   return window.axios.post('/api/register', credentials
   ).then(({ data: { data, meta } }) => {
+    setToken(meta.token);
     dispatch(setUserData(data));
     dispatch(setAuthenticated(true));
-    dispatch(setToken(meta.token));
-    dispatch(setHttpToken(meta.token));
     return Promise.resolve({ data, meta });
   }).catch(error => {
     return Promise.reject(error);
   });
 };
 
-export const fetchUser = () => dispatch => {
-  return window.axios.get('/api/me').then(({ data: { data } }) => {
-    return Promise.resolve(data);
-  }).catch(err => {
-    return Promise.reject(err);
-  });
-};
-
 export const clearAuth = () => dispatch => {
+  setToken(null);
   dispatch(setUserData(null));
   dispatch(setAuthenticated(false));
-  dispatch(setToken(null));
-  dispatch(setHttpToken(null));
 };
 
-export const logoutUser = (cb) => dispatch => {
-  return window.axios.post('/api/logout').then((response) => {
+export const logoutUser = cb => dispatch => {
+  return window.axios.post('/api/logout')
+    .then(response => {
+      dispatch(clearAuth());
+      cb();
+    })
+    .catch(anyError => {
+      dispatch(clearAuth());
+      cb();
+    });
+};
+
+export const initAuthFromExistingToken = (cb) => dispatch => {
+  checkTokenExists().then(token => {
+    setToken(token);
+    fetchUser().then(data => {
+      dispatch(setUserData(data));
+      dispatch(setAuthenticated(true));
+      cb();
+    }).catch(anyError => {
+      dispatch(clearAuth());
+      cb();
+    });
+  }).catch(anyError => {
+    dispatch(clearAuth());
     cb();
-  }).catch(err => {
-    cb();
-    console.log(err);
   });
 };

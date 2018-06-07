@@ -14,6 +14,27 @@ export const checkTokenExists = () => {
   });
 };
 
+const setLocalForageToken = token => {
+  if (isEmpty(token)) {
+    localforage.removeItem('authtoken', token);
+  }
+
+  localforage.setItem('authtoken', token);
+};
+
+const setHttpToken = (token) => {
+  if (isEmpty(token)) {
+    window.axios.defaults.headers.common['Authorization'] = null;
+  }
+
+  window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+};
+
+export const setToken = token => {
+  setLocalForageToken(token);
+  setHttpToken(token);
+};
+
 export const setIntendedUrl = url => localforage.setItem(INTENDED_URL, url);
 
 export const getIntendedUrl = () => {

@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { NavLink, Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { logoutUser, clearAuth } from '../actions/auth';
+import { logoutUser } from '../actions/auth';
 
 const propTypes = {
   auth: PropTypes.object.isRequired,
-  clearAuth: PropTypes.func.isRequired,
   logoutUser: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired
 };
@@ -19,13 +18,8 @@ class AuthNav extends Component {
     };
   }
 
-  redirectToSignIn () {
-    this.props.clearAuth();
-    this.props.history.push('/');
-  }
-
   handleLogout () {
-    this.props.logoutUser(() => this.redirectToSignIn());
+    this.props.logoutUser(() => this.props.history.push('/'));
   }
 
   render () {
@@ -62,7 +56,7 @@ class AuthNav extends Component {
 
 AuthNav.propTypes = propTypes;
 
-const mapDispatchToProps = { logoutUser, clearAuth };
+const mapDispatchToProps = { logoutUser };
 const mapStateToProps = ({ auth }) => ({ auth });
 
 export default connect(

@@ -10,40 +10,18 @@ import Profile from '../pages/Profile';
 import AuthRoute from './AuthRoute';
 import { connect } from 'react-redux';
 import { setLoading } from '../actions/share';
-import { setToken, fetchUser, setUserData, setAuthenticated, clearAuth, setHttpToken } from '../actions/auth';
-import { checkTokenExists } from '../helpers';
+import { initAuthFromExistingToken } from '../actions/auth';
 import GuestRoute from './GuestRoute';
 
 const propTypes = {
-  setToken: PropTypes.func.isRequired,
-  setHttpToken: PropTypes.func.isRequired,
-  setUserData: PropTypes.func.isRequired,
   setLoading: PropTypes.func.isRequired,
-  fetchUser: PropTypes.func.isRequired,
-  setAuthenticated: PropTypes.func.isRequired,
-  clearAuth: PropTypes.func.isRequired,
-  loading: PropTypes.bool.isRequired
+  loading: PropTypes.bool.isRequired,
+  initAuthFromExistingToken: PropTypes.func.isRequired
 };
 
 class App extends Component {
   componentDidMount () {
-    checkTokenExists().then(token => {
-      this.props.setToken(token);
-      this.props.setHttpToken(token);
-      this.props.fetchUser().then(data => {
-        this.props.setUserData(data);
-        this.props.setAuthenticated(true);
-        this.props.setLoading(false);
-      }).catch(error => {
-        this.props.clearAuth();
-        this.props.setLoading(false);
-        console.log(error);
-      });
-    }).catch(error => {
-      this.props.clearAuth();
-      this.props.setLoading(false);
-      console.log(error);
-    });
+    this.props.initAuthFromExistingToken(() => this.props.setLoading(false));
   }
 
   render () {
@@ -73,13 +51,8 @@ class App extends Component {
 App.propTypes = propTypes;
 
 const mapDispatchToProps = {
-  setToken,
-  fetchUser,
-  clearAuth,
-  setHttpToken,
   setLoading,
-  setAuthenticated,
-  setUserData
+  initAuthFromExistingToken
 };
 
 const mapStateToProps = ({ share: { loading } }) => ({ loading });
