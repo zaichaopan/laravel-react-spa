@@ -11,6 +11,7 @@ const propTypes = {
 class Profile extends Component {
     constructor(props) {
         super(props);
+        //console.log(props.match.params.id);
     }
 
     render() {

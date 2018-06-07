@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { registerUser } from '../actions/auth';
+import { destructServerErrors, hasError, getError } from '../helpers';
 
 class Register extends Component {
     constructor(props) {
@@ -10,7 +11,8 @@ class Register extends Component {
             name: '',
             email: '',
             password: '',
-            password_confirmation: ''
+            password_confirmation: '',
+            errors: ''
         }
     }
 
@@ -20,11 +22,19 @@ class Register extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.registerUser(this.state, () => { this.registerSuccess() });
+        this.props.registerUser(this.state)
+            .then(response => this.registerSuccess())
+            .catch(error => this.setState({ errors: destructServerErrors(error) }));
     }
 
     handleInputChange(e) {
-        this.setState({ [e.target.name]: e.target.value });
+        this.setState({
+            [e.target.name]: e.target.value,
+            errors: {
+                ...this.state.errors,
+                ...{ [e.target.name]: '' }
+            }
+        });
     }
 
     render() {
@@ -42,12 +52,16 @@ class Register extends Component {
                             value={this.state.name}
                             onChange={e => this.handleInputChange(e)}
                             type="text"
+                            id="username"
                             name="name"
                             className="appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight"
-                            id="username"
                             placeholder="jane doe"
                             required
                             autoFocus />
+
+                        {hasError(this.state.errors, 'name') &&
+                            <p className="text-red text-xs pt-2">{getError(this.state.errors, 'name')}</p>
+                        }
                     </div>
 
                     <div className="mb-4">
@@ -57,12 +71,16 @@ class Register extends Component {
                         <input
                             value={this.state.email}
                             onChange={e => this.handleInputChange(e)}
-                            name="email"
-                            className="appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight"
                             id="email"
+                            name="email"
                             type="email"
+                            className={`appearance-none border rounded w-full py-2 px-3 text-grey-darker  ${hasError(this.state.errors, 'name') ? 'border-red' : ''}`}
                             placeholder="jane@example.com"
                             required />
+
+                        {hasError(this.state.errors, 'email') &&
+                            <p className="text-red text-xs pt-2">{getError(this.state.errors, 'email')}</p>
+                        }
                     </div>
 
                     <div className="mb-4">
@@ -71,10 +89,15 @@ class Register extends Component {
                             value={this.state.password}
                             onChange={e => this.handleInputChange(e)}
                             type="password"
-                            name="password"
-                            className="appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight"
                             id="password"
+                            name="password"
+                            className={`appearance-none border rounded w-full py-2 px-3 text-grey-darker  ${hasError(this.state.errors, 'password') ? 'border-red' : ''}`}
+                            minLength={6}
                             required />
+
+                        {hasError(this.state.errors, 'password') &&
+                            <p className="text-red text-xs pt-2">{getError(this.state.errors, 'password')}</p>
+                        }
                     </div>
 
                     <div className="mb-4">
@@ -83,9 +106,10 @@ class Register extends Component {
                             value={this.state.password_confirmation}
                             onChange={e => this.handleInputChange(e)}
                             type="password"
+                            id="password-confirmation"
                             name="password_confirmation"
-                            className="appearance-none border rounded w-full py-2 px-3 text-grey-darker mb-3 leading-tight"
-                            id="password-confirmation" type="password" required />
+                            className={`appearance-none border rounded w-full py-2 px-3 text-grey-darker  ${hasError(this.state.errors, 'password') ? 'border-red' : ''}`}
+                            required />
                     </div>
 
                     <div className="mb-2">

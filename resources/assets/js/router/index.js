@@ -48,7 +48,7 @@ class App extends Component {
                         <Route path="/register" component={Register} />
                         <Route path="/signin" component={SignIn} />
                         <AuthRoute path="/home" component={Home} />
-                        <AuthRoute path="/profile" component={Profile} />
+                        <AuthRoute path="/profile/:id" component={Profile} />
                         <Route component={NotFound} />
                     </Switch>
                 </div>

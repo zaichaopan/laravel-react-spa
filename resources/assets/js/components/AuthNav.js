@@ -41,7 +41,7 @@ class AuthNav extends Component {
                     <div className="right">
                         <ul className="list-reset flex items-center">
                             <li className="px-4">
-                                <NavLink to="/profile" className="capitalize text-sm text-grey-darker no-underline">
+                                <NavLink to={`/profile/${this.state.user.id}`} className="capitalize text-sm text-grey-darker no-underline">
                                     {this.state.user.name}
                                 </NavLink>
                             </li>

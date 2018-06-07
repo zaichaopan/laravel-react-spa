@@ -1,34 +1,38 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { signInUser } from '../actions/auth';
-import NotFound from './404';
-import { getIntendedUrl } from '../helpers';
+import { getIntendedUrl, destructServerErrors, hasError, getError } from '../helpers';
 
 class SignIn extends Component {
     constructor(props) {
         super(props);
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            errors: ''
         }
     }
 
     signInSuccess() {
-        getIntendedUrl().then(url => {
-            this.props.history.push(url)
-        });
+        getIntendedUrl().then(url => this.props.history.push(url));
     }
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.signInUser(this.state, () => { this.signInSuccess() });
-
+        this.props.signInUser(this.state)
+            .then(response => this.signInSuccess())
+            .catch(error => this.setState({ errors: destructServerErrors(error) }));
     }
 
     handleInputChange(e) {
-        this.setState({ [e.target.name]: e.target.value });
+        this.setState({
+            [e.target.name]: e.target.value,
+            errors: {
+                ...this.state.errors,
+                ...{ [e.target.name]: '' }
+            }
+        });
     }
 
     render() {
@@ -47,10 +51,16 @@ class SignIn extends Component {
                             id="email"
                             type="email"
                             name="email"
-                            className="appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight" placeholder="jane@example.com"
+                            className={`appearance-none border rounded w-full py-2 px-3 text-grey-darker ${hasError(this.state.errors, 'email') ? 'border-red' : ''}`}
+                            placeholder="jane@example.com"
                             required
                             autoFocus
                         />
+
+                        {hasError(this.state.errors, 'email') &&
+                            <p className="text-red text-xs pt-2">{getError(this.state.errors, 'email')}</p>
+                        }
+
                     </div>
 
                     <div className="mb-6">
@@ -59,8 +69,10 @@ class SignIn extends Component {
                             value={this.state.password}
                             onChange={e => this.handleInputChange(e)}
                             type="password"
+                            id="password"
                             name="password"
-                            className="appearance-none border rounded w-full py-2 px-3 text-grey-darker mb-3 leading-tight" id="password" type="password" required />
+                            className="appearance-none border rounded w-full py-2 px-3 text-grey-darker mb-3"
+                            required />
                     </div>
 
                     <div className="mb-2">
@@ -69,14 +81,13 @@ class SignIn extends Component {
                 </form>
 
                 <div className="p-4 text-grey-dark text-sm">
-                    <span>Don't have an account? </span>
+                    <span>Create a New Account? </span>
                     <Link to="/register" className="no-underline text-grey-darker font-bold">Register</Link>
                 </div>
             </div>
         );
     }
 }
-
 
 const mapDispatchToProps = {
     signInUser

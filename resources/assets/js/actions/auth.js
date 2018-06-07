@@ -25,28 +25,28 @@ export const setAuthenticated = authenticated => ({
 });
 
 
-export const signInUser = (credentials, cb) => dispatch => {
+export const signInUser = credentials => dispatch => {
     return window.axios.post('/api/signin', credentials).then(({ data: { data, meta } }) => {
         dispatch(setUserData(data));
         dispatch(setAuthenticated(true));
         dispatch(setToken(meta.token));
         dispatch(setHttpToken(meta.token));
-        cb();
+        return Promise.resolve({ data, meta });
     }).catch(error => {
-        console.log(error);
+        return Promise.reject(error);
     });
 };
 
-export const registerUser = (credentials, cb) => dispatch => {
+export const registerUser = credentials => dispatch => {
     return window.axios.post('/api/register', credentials
     ).then(({ data: { data, meta } }) => {
         dispatch(setUserData(data));
         dispatch(setAuthenticated(true));
         dispatch(setToken(meta.token));
         dispatch(setHttpToken(meta.token));
-        cb();
+        return Promise.resolve({ data, meta })
     }).catch(error => {
-        console.log(error);
+        return Promise.reject(error);
     });
 };
 

@@ -14,9 +14,8 @@ export const checkTokenExists = () => {
     })
 }
 
-export const setIntendedUrl = (url) => {
-    localforage.setItem(INTENDED_URL, url);
-}
+export const setIntendedUrl = url => localforage.setItem(INTENDED_URL, url);
+
 
 export const getIntendedUrl = () => {
     return localforage.getItem(INTENDED_URL).then((url) => {
@@ -26,4 +25,22 @@ export const getIntendedUrl = () => {
 
         return Promise.resolve(url);
     })
+}
+
+
+export const destructServerErrors = error => {
+    if (error.response && error.response.data && error.response.data.errors) {
+        return error.response.data.errors;
+    }
+
+    return '';
+}
+
+export const hasError = (errors, field) => {
+    return !isEmpty(errors[field]);
+}
+
+export const getError = (errors, field) => {
+    let [error,] = errors[field];
+    return error;
 }
