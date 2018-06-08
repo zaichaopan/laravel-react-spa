@@ -3598,7 +3598,7 @@ var isExtraneousPopstateEvent = function isExtraneousPopstateEvent(event) {
 var GuestNav = function GuestNav() {
   return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
     'div',
-    { className: 'container flex w-full justify-end' },
+    { className: 'w-full px-6 mx-auto flex items-center justify-between' },
     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       'ul',
       { className: 'list-reset flex pt-4' },
@@ -3606,22 +3606,37 @@ var GuestNav = function GuestNav() {
         'li',
         { className: 'px-2' },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* NavLink */],
-          { to: '/register',
-            className: 'no-underline text-grey-darker',
-            activeClassName: 'font-bold' },
-          'Register'
+          __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["b" /* Link */],
+          { to: '',
+            className: 'no-underline text-grey-darker'
+          },
+          'Laravel React SPA'
+        )
+      )
+    ),
+    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      'ul',
+      { className: 'list-reset flex pt-4' },
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'li',
+        { className: 'px-4 py-2' },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["b" /* Link */],
+          { to: '/signin',
+            className: 'no-underline font-medium text-grey-darker'
+          },
+          'Sign in'
         )
       ),
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'li',
-        { className: 'px-2' },
+        { className: 'px-4 py-2 border bg-indigo rounded-full' },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* NavLink */],
-          { to: '/signin',
-            activeClassName: 'font-bold',
-            className: 'no-underline text-grey-darker' },
-          'Sign in'
+          __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["b" /* Link */],
+          { to: '/register',
+            className: 'no-underline text-white font-semibold'
+          },
+          'try it FREE'
         )
       )
     )
@@ -4107,12 +4122,31 @@ var AuthNav = function (_Component) {
     var _this = _possibleConstructorReturn(this, (AuthNav.__proto__ || Object.getPrototypeOf(AuthNav)).call(this, props));
 
     _this.state = {
-      user: _this.props.auth.user
+      user: _this.props.auth.user,
+      hideMobileNav: true
     };
     return _this;
   }
 
   _createClass(AuthNav, [{
+    key: 'toggleMobileNav',
+    value: function toggleMobileNav() {
+      this.setState(function (prevState, props) {
+        return {
+          hideMobileNav: !prevState.hideMobileNav
+        };
+      });
+    }
+  }, {
+    key: 'closeMobileNav',
+    value: function closeMobileNav() {
+      if (!this.state.hideMobileNav) {
+        this.setState({
+          hideMobileNav: true
+        });
+      }
+    }
+  }, {
     key: 'handleLogout',
     value: function handleLogout() {
       var _this2 = this;
@@ -4128,13 +4162,13 @@ var AuthNav = function (_Component) {
 
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
-        { className: 'flex h-16 border-b border-grey-light' },
+        { className: 'auth-nav flex flex-row h-16 border-b border-grey-light' },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'div',
-          { className: 'container px-2 mx-auto flex items-center justify-between' },
+          { className: 'container flex-col lg:flex-row px-2 mx-auto flex items-center justify-between' },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
-            { className: 'left' },
+            { className: 'left flex justify-between w-full lg:w-auto flex-1 lg:flex-initial' },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'ul',
               { className: 'list-reset flex items-center' },
@@ -4143,36 +4177,119 @@ var AuthNav = function (_Component) {
                 null,
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                   __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* NavLink */],
-                  { to: '/home', activeClassName: 'font-bold', className: 'text-grey-darkest no-underline text-indigo' },
+                  {
+                    to: '/home',
+                    activeClassName: 'font-bold',
+                    className: 'text-grey-darkest no-underline text-indigo' },
                   'Laravel React SPA'
                 )
+              )
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'div',
+              {
+                onClick: function onClick() {
+                  return _this3.toggleMobileNav();
+                },
+                id: 'sidebar-open',
+                className: 'z-50 flex px-6 items-center lg:hidden' },
+              this.state.hideMobileNav ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'svg',
+                {
+                  className: 'fill-current w-4 h-4 cursor-pointer text-grey',
+                  role: 'button', xmlns: 'http://www.w3.org/2000/svg',
+                  viewBox: '0 0 20 20' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('path', { d: 'M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z' })
+              ) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'svg',
+                { className: 'fill-current w-4 h-4 cursor-pointer text-grey',
+                  role: 'button',
+                  xmlns: 'http://www.w3.org/2000/svg',
+                  viewBox: '0 0 20 20' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('path', { d: 'M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z' })
               )
             )
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
-            { className: 'right' },
+            {
+              className: 'right lg:flex pt-8 lg:pt-0 right fixed lg:relative bg-indigo lg:bg-white w-full lg:w-auto h-screen lg:h-auto ' + (this.state.hideMobileNav ? 'mobile-hidden' : '') },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'ul',
-              { className: 'list-reset flex items-center' },
+              { className: 'mt-8 py-8 lg:py-0 lg:mt-0 list-reset flex items-center flex-col lg:flex-row' },
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'li',
-                { className: 'px-4' },
+                {
+                  onClick: function onClick() {
+                    return _this3.closeMobileNav();
+                  },
+                  className: 'px-4 py-3 lg:py-0' },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                   __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* NavLink */],
-                  { to: '/profile/' + this.state.user.id, className: 'capitalize text-sm text-grey-darker no-underline' },
+                  {
+                    to: '/home',
+                    className: 'capitalize text-2xl font-bold lg:text-sm lg:font-light text-white lg:text-grey-dark underline lg:no-underline' },
+                  'Home'
+                )
+              ),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'li',
+                {
+                  onClick: function onClick() {
+                    return _this3.closeMobileNav();
+                  },
+                  className: 'px-4 py-3 lg:py-0' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* NavLink */],
+                  {
+                    to: '/home',
+                    className: 'capitalize text-2xl font-bold lg:text-sm lg:font-light text-white lg:text-grey-dark underline lg:no-underline' },
+                  'Messages'
+                )
+              ),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'li',
+                {
+                  onClick: function onClick() {
+                    return _this3.closeMobileNav();
+                  },
+                  className: 'px-4 py-3 lg:py-0' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* NavLink */],
+                  {
+                    to: '/home',
+                    className: 'capitalize text-2xl font-bold lg:text-sm lg:font-light text-white lg:text-grey-dark underline lg:no-underline' },
+                  'Notifications'
+                )
+              ),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'li',
+                {
+                  onClick: function onClick() {
+                    return _this3.closeMobileNav();
+                  },
+                  className: 'px-4 py-3 lg:py-0' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* NavLink */],
+                  {
+                    to: '/profile/' + this.state.user.id,
+                    className: 'text-2xl font-bold lg:text-sm lg:font-light capitalize text-sm text-white lg:text-grey-dark underline lg:no-underline' },
                   this.state.user.name
                 )
               ),
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'li',
-                { onClick: function onClick() {
+                {
+                  onClick: function onClick() {
                     return _this3.handleLogout();
-                  } },
+                  },
+                  className: 'px-4 py-3 lg:py-0' },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                   __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["b" /* Link */],
-                  { to: '/logout', className: 'text-sm text-grey-darker no-underline' },
-                  'Log out'
+                  {
+                    to: '/logout',
+                    className: 'capitalize text-2xl font-bold lg:text-sm lg:font-light text-white lg:text-grey-dark underline lg:no-underline' },
+                  'Logout'
                 )
               )
             )
@@ -48722,70 +48839,85 @@ var SignIn = function (_Component) {
           'div',
           { className: 'flex justify-center items-center w-full py-4 flex-col min-h-screen bg-grey-lighter' },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'form',
-            { onSubmit: function onSubmit(e) {
-                return _this4.handleSubmit(e);
-              },
-              method: 'POST', className: 'border rounded bg-white border-grey-light w-3/4 sm:w-1/2 lg:w-2/5 xl:w-1/4 px-8 py-4' },
+            'div',
+            { className: 'p-4' },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'h2',
-              { className: 'text-center mb-4 text-grey-darker' },
-              'Sign in'
-            ),
+              __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["b" /* Link */],
+              {
+                to: '/',
+                className: 'text-grey-darkest text-bold no-underline text-indigo text-2xl' },
+              'Laravel React SPA'
+            )
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { className: 'border rounded bg-white border-grey-light w-3/4 sm:w-1/2 lg:w-2/5 xl:w-1/4 px-8 py-4' },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'div',
-              { className: 'mb-4' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'label',
-                { className: 'block text-grey-darker text-sm font-bold mb-2', htmlFor: 'email' },
-                'Email address'
-              ),
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
-                value: this.state.email,
-                onChange: function onChange(e) {
-                  return _this4.handleInputChange(e);
+              'form',
+              { onSubmit: function onSubmit(e) {
+                  return _this4.handleSubmit(e);
                 },
-                id: 'email',
-                type: 'email',
-                name: 'email',
-                className: 'appearance-none border rounded w-full py-2 px-3 text-grey-darker ' + (Object(__WEBPACK_IMPORTED_MODULE_7__helpers_error__["c" /* hasError */])(this.state.errors, 'email') ? 'border-red' : ''),
-                placeholder: 'jane@example.com',
-                required: true,
-                autoFocus: true
-              }),
-              Object(__WEBPACK_IMPORTED_MODULE_7__helpers_error__["c" /* hasError */])(this.state.errors, 'email') && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'p',
-                { className: 'text-red text-xs pt-2' },
-                Object(__WEBPACK_IMPORTED_MODULE_7__helpers_error__["b" /* getError */])(this.state.errors, 'email')
-              )
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'div',
-              { className: 'mb-6' },
+                method: 'POST' },
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'label',
-                { className: 'block text-grey-darker text-sm font-bold mb-2', htmlFor: 'password' },
-                ' Password '
-              ),
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
-                value: this.state.password,
-                onChange: function onChange(e) {
-                  return _this4.handleInputChange(e);
-                },
-                type: 'password',
-                id: 'password',
-                name: 'password',
-                className: 'appearance-none border rounded w-full py-2 px-3 text-grey-darker',
-                required: true })
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'div',
-              { className: 'mb-2' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'button',
-                { type: 'submit',
-                  className: 'border rounded-full p-3 text-white bg-indigo w-full font-bold hover:bg-indigo-dark' },
+                'h2',
+                { className: 'text-center mb-4 text-grey-darker' },
                 'Sign in'
+              ),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'mb-4' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'label',
+                  { className: 'block text-grey-darker text-sm font-bold mb-2', htmlFor: 'email' },
+                  'Email address'
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
+                  value: this.state.email,
+                  onChange: function onChange(e) {
+                    return _this4.handleInputChange(e);
+                  },
+                  id: 'email',
+                  type: 'email',
+                  name: 'email',
+                  className: 'appearance-none border rounded w-full py-2 px-3 text-grey-darker ' + (Object(__WEBPACK_IMPORTED_MODULE_7__helpers_error__["c" /* hasError */])(this.state.errors, 'email') ? 'border-red' : ''),
+                  placeholder: 'jane@example.com',
+                  required: true,
+                  autoFocus: true
+                }),
+                Object(__WEBPACK_IMPORTED_MODULE_7__helpers_error__["c" /* hasError */])(this.state.errors, 'email') && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'p',
+                  { className: 'text-red text-xs pt-2' },
+                  Object(__WEBPACK_IMPORTED_MODULE_7__helpers_error__["b" /* getError */])(this.state.errors, 'email')
+                )
+              ),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'mb-6' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'label',
+                  { className: 'block text-grey-darker text-sm font-bold mb-2', htmlFor: 'password' },
+                  ' Password '
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
+                  value: this.state.password,
+                  onChange: function onChange(e) {
+                    return _this4.handleInputChange(e);
+                  },
+                  type: 'password',
+                  id: 'password',
+                  name: 'password',
+                  className: 'appearance-none border rounded w-full py-2 px-3 text-grey-darker',
+                  required: true })
+              ),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'mb-2' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'button',
+                  { type: 'submit',
+                    className: 'border rounded-full p-3 text-white bg-indigo w-full font-bold hover:bg-indigo-dark' },
+                  'Sign in'
+                )
               )
             )
           ),
@@ -49809,119 +49941,134 @@ var Register = function (_Component) {
           'div',
           { className: 'flex justify-center items-center w-full flex-col py-4 min-h-screen bg-grey-lighter' },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'form',
-            { onSubmit: function onSubmit(e) {
-                return _this3.handleSubmit(e);
+            'div',
+            { className: 'p-4' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["b" /* Link */],
+              {
+                to: '/',
+                className: 'text-grey-darkest text-bold no-underline text-indigo text-2xl' },
+              'Laravel React SPA'
+            )
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { className: 'bg-white border rounded border-grey-light w-3/4 sm:w-1/2 lg:w-2/5 xl:w-1/4 px-8 py-4' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'form',
+              { onSubmit: function onSubmit(e) {
+                  return _this3.handleSubmit(e);
+                },
+                method: 'POST'
               },
-              method: 'POST',
-              className: 'bg-white border rounded border-grey-light w-3/4 sm:w-1/2 lg:w-2/5 xl:w-1/4 px-8 py-4' },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'h2',
-              { className: 'text-center mb-4 text-grey-darker' },
-              'Register'
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'div',
-              { className: 'mb-4' },
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'label',
-                { className: 'block text-grey-darker text-sm font-bold mb-2', htmlFor: 'username' },
-                'Username'
-              ),
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
-                value: this.state.name,
-                onChange: function onChange(e) {
-                  return _this3.handleInputChange(e);
-                },
-                type: 'text',
-                id: 'username',
-                name: 'name',
-                className: 'appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight',
-                placeholder: 'jane doe',
-                required: true,
-                autoFocus: true }),
-              Object(__WEBPACK_IMPORTED_MODULE_6__helpers_error__["c" /* hasError */])(this.state.errors, 'name') && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'p',
-                { className: 'text-red text-xs pt-2' },
-                Object(__WEBPACK_IMPORTED_MODULE_6__helpers_error__["b" /* getError */])(this.state.errors, 'name')
-              )
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'div',
-              { className: 'mb-4' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'label',
-                { className: 'block text-grey-darker text-sm font-bold mb-2', htmlFor: 'email' },
-                'Email'
-              ),
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
-                value: this.state.email,
-                onChange: function onChange(e) {
-                  return _this3.handleInputChange(e);
-                },
-                id: 'email',
-                name: 'email',
-                type: 'email',
-                className: 'appearance-none border rounded w-full py-2 px-3 text-grey-darker  ' + (Object(__WEBPACK_IMPORTED_MODULE_6__helpers_error__["c" /* hasError */])(this.state.errors, 'name') ? 'border-red' : ''),
-                placeholder: 'jane@example.com',
-                required: true }),
-              Object(__WEBPACK_IMPORTED_MODULE_6__helpers_error__["c" /* hasError */])(this.state.errors, 'email') && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'p',
-                { className: 'text-red text-xs pt-2' },
-                Object(__WEBPACK_IMPORTED_MODULE_6__helpers_error__["b" /* getError */])(this.state.errors, 'email')
-              )
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'div',
-              { className: 'mb-4' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'label',
-                { className: 'block text-grey-darker text-sm font-bold mb-2', htmlFor: 'password' },
-                ' Password '
-              ),
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
-                value: this.state.password,
-                onChange: function onChange(e) {
-                  return _this3.handleInputChange(e);
-                },
-                type: 'password',
-                id: 'password',
-                name: 'password',
-                className: 'appearance-none border rounded w-full py-2 px-3 text-grey-darker  ' + (Object(__WEBPACK_IMPORTED_MODULE_6__helpers_error__["c" /* hasError */])(this.state.errors, 'password') ? 'border-red' : ''),
-                minLength: 6,
-                required: true }),
-              Object(__WEBPACK_IMPORTED_MODULE_6__helpers_error__["c" /* hasError */])(this.state.errors, 'password') && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'p',
-                { className: 'text-red text-xs pt-2' },
-                Object(__WEBPACK_IMPORTED_MODULE_6__helpers_error__["b" /* getError */])(this.state.errors, 'password')
-              )
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'div',
-              { className: 'mb-4' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'label',
-                { className: 'block text-grey-darker text-sm font-bold mb-2', htmlFor: 'password-confirmation' },
-                ' Password confirmation '
-              ),
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
-                value: this.state.password_confirmation,
-                onChange: function onChange(e) {
-                  return _this3.handleInputChange(e);
-                },
-                type: 'password',
-                id: 'password-confirmation',
-                name: 'password_confirmation',
-                className: 'appearance-none border rounded w-full py-2 px-3 text-grey-darker  ' + (Object(__WEBPACK_IMPORTED_MODULE_6__helpers_error__["c" /* hasError */])(this.state.errors, 'password') ? 'border-red' : ''),
-                required: true })
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'div',
-              { className: 'mb-2' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'button',
-                { className: 'border rounded-full p-3 text-white bg-indigo w-full font-bold hover:bg-indigo-dark' },
+                'h2',
+                { className: 'text-center mb-4 text-grey-darker' },
                 'Register'
+              ),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'mb-4' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'label',
+                  { className: 'block text-grey-darker text-sm font-bold mb-2', htmlFor: 'username' },
+                  'Username'
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
+                  value: this.state.name,
+                  onChange: function onChange(e) {
+                    return _this3.handleInputChange(e);
+                  },
+                  type: 'text',
+                  id: 'username',
+                  name: 'name',
+                  className: 'appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight',
+                  placeholder: 'jane doe',
+                  required: true,
+                  autoFocus: true }),
+                Object(__WEBPACK_IMPORTED_MODULE_6__helpers_error__["c" /* hasError */])(this.state.errors, 'name') && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'p',
+                  { className: 'text-red text-xs pt-2' },
+                  Object(__WEBPACK_IMPORTED_MODULE_6__helpers_error__["b" /* getError */])(this.state.errors, 'name')
+                )
+              ),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'mb-4' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'label',
+                  { className: 'block text-grey-darker text-sm font-bold mb-2', htmlFor: 'email' },
+                  'Email'
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
+                  value: this.state.email,
+                  onChange: function onChange(e) {
+                    return _this3.handleInputChange(e);
+                  },
+                  id: 'email',
+                  name: 'email',
+                  type: 'email',
+                  className: 'appearance-none border rounded w-full py-2 px-3 text-grey-darker  ' + (Object(__WEBPACK_IMPORTED_MODULE_6__helpers_error__["c" /* hasError */])(this.state.errors, 'name') ? 'border-red' : ''),
+                  placeholder: 'jane@example.com',
+                  required: true }),
+                Object(__WEBPACK_IMPORTED_MODULE_6__helpers_error__["c" /* hasError */])(this.state.errors, 'email') && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'p',
+                  { className: 'text-red text-xs pt-2' },
+                  Object(__WEBPACK_IMPORTED_MODULE_6__helpers_error__["b" /* getError */])(this.state.errors, 'email')
+                )
+              ),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'mb-4' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'label',
+                  { className: 'block text-grey-darker text-sm font-bold mb-2', htmlFor: 'password' },
+                  ' Password '
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
+                  value: this.state.password,
+                  onChange: function onChange(e) {
+                    return _this3.handleInputChange(e);
+                  },
+                  type: 'password',
+                  id: 'password',
+                  name: 'password',
+                  className: 'appearance-none border rounded w-full py-2 px-3 text-grey-darker  ' + (Object(__WEBPACK_IMPORTED_MODULE_6__helpers_error__["c" /* hasError */])(this.state.errors, 'password') ? 'border-red' : ''),
+                  minLength: 6,
+                  required: true }),
+                Object(__WEBPACK_IMPORTED_MODULE_6__helpers_error__["c" /* hasError */])(this.state.errors, 'password') && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'p',
+                  { className: 'text-red text-xs pt-2' },
+                  Object(__WEBPACK_IMPORTED_MODULE_6__helpers_error__["b" /* getError */])(this.state.errors, 'password')
+                )
+              ),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'mb-4' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'label',
+                  { className: 'block text-grey-darker text-sm font-bold mb-2', htmlFor: 'password-confirmation' },
+                  ' Password confirmation '
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
+                  value: this.state.password_confirmation,
+                  onChange: function onChange(e) {
+                    return _this3.handleInputChange(e);
+                  },
+                  type: 'password',
+                  id: 'password-confirmation',
+                  name: 'password_confirmation',
+                  className: 'appearance-none border rounded w-full py-2 px-3 text-grey-darker  ' + (Object(__WEBPACK_IMPORTED_MODULE_6__helpers_error__["c" /* hasError */])(this.state.errors, 'password') ? 'border-red' : ''),
+                  required: true })
+              ),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'mb-2' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'button',
+                  { className: 'border rounded-full p-3 text-white bg-indigo w-full font-bold hover:bg-indigo-dark' },
+                  'Register'
+                )
               )
             )
           ),
@@ -49960,9 +50107,10 @@ var mapDispatchToProps = { registerUser: __WEBPACK_IMPORTED_MODULE_5__actions_au
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_document_title__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_document_title___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_document_title__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__helpers_error__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_router_dom__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_document_title__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_document_title___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_document_title__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__helpers_error__ = __webpack_require__(16);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -49974,6 +50122,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -50006,7 +50155,7 @@ var ForgotPassword = function (_Component) {
 
         _this2.setState({ 'resetMessage': status });
       }).catch(function (error) {
-        _this2.setState({ errors: Object(__WEBPACK_IMPORTED_MODULE_2__helpers_error__["a" /* destructServerErrors */])(error) });
+        _this2.setState({ errors: Object(__WEBPACK_IMPORTED_MODULE_3__helpers_error__["a" /* destructServerErrors */])(error) });
       });
     }
   }, {
@@ -50022,7 +50171,7 @@ var ForgotPassword = function (_Component) {
       var _this3 = this;
 
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_1_react_document_title___default.a,
+        __WEBPACK_IMPORTED_MODULE_2_react_document_title___default.a,
         { title: 'Forgot password - ' + window.App.name },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'div',
@@ -50038,68 +50187,95 @@ var ForgotPassword = function (_Component) {
             )
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'form',
-            {
-              onSubmit: function onSubmit(e) {
-                return _this3.handleSubmit(e);
-              },
-              method: 'POST',
-              className: 'border rounded bg-white border-grey-light w-3/4 sm:w-1/2 lg:w-2/5 xl:w-1/3 px-8 py-4' },
+            'div',
+            { className: 'p-4' },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'h2',
-              { className: 'text-center mb-4 text-grey-darker' },
-              'Can\'t log in?'
-            ),
+              __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["b" /* Link */],
+              {
+                to: '/',
+                className: 'text-grey-darkest text-bold no-underline text-indigo text-2xl' },
+              'Laravel React SPA'
+            )
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { className: 'border rounded bg-white border-grey-light w-3/4 sm:w-1/2 lg:w-2/5 xl:w-1/3 px-8 py-4' },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'div',
-              { className: 'mb-4' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'label',
-                { className: 'block text-grey-darker text-sm font-bold mb-2', htmlFor: 'email' },
-                'Enter your email address'
-              ),
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
-                value: this.state.email,
-                onChange: function onChange(e) {
-                  return _this3.handleInputChange(e);
+              'form',
+              {
+                onSubmit: function onSubmit(e) {
+                  return _this3.handleSubmit(e);
                 },
-                id: 'email',
-                type: 'email',
-                name: 'email',
-                className: 'appearance-none border rounded w-full py-2 px-3 text-grey-darker ' + (Object(__WEBPACK_IMPORTED_MODULE_2__helpers_error__["c" /* hasError */])(this.state.errors, 'email') ? 'border-red' : ''),
-                placeholder: 'e.g.jane@example.com',
-                required: true,
-                autoFocus: true
-              }),
-              Object(__WEBPACK_IMPORTED_MODULE_2__helpers_error__["c" /* hasError */])(this.state.errors, 'email') && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'p',
-                { className: 'text-red text-xs pt-2' },
-                Object(__WEBPACK_IMPORTED_MODULE_2__helpers_error__["b" /* getError */])(this.state.errors, 'email')
+                method: 'POST'
+              },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'h2',
+                { className: 'text-center mb-4 text-grey-darker' },
+                'Can\'t log in?'
               ),
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
-                { className: 'mt-6 mb-2' },
+                { className: 'mb-4' },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                  'button',
-                  { type: 'submit',
-                    className: 'border rounded-full p-3 text-white bg-indigo w-full font-bold hover:bg-indigo-dark' },
-                  'Email me reset instructions'
-                )
-              ),
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
-                { className: 'mt-6 pt-6 border-t border-grey-light' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                  'strong',
-                  { className: 'text-grey-darker' },
-                  'If you don\u2019t see your reset email\u2026'
+                  'label',
+                  { className: 'block text-grey-darker text-sm font-bold mb-2', htmlFor: 'email' },
+                  'Enter your email address'
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
+                  value: this.state.email,
+                  onChange: function onChange(e) {
+                    return _this3.handleInputChange(e);
+                  },
+                  id: 'email',
+                  type: 'email',
+                  name: 'email',
+                  className: 'appearance-none border rounded w-full py-2 px-3 text-grey-darker ' + (Object(__WEBPACK_IMPORTED_MODULE_3__helpers_error__["c" /* hasError */])(this.state.errors, 'email') ? 'border-red' : ''),
+                  placeholder: 'e.g.jane@example.com',
+                  required: true,
+                  autoFocus: true
+                }),
+                Object(__WEBPACK_IMPORTED_MODULE_3__helpers_error__["c" /* hasError */])(this.state.errors, 'email') && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'p',
+                  { className: 'text-red text-xs pt-2' },
+                  Object(__WEBPACK_IMPORTED_MODULE_3__helpers_error__["b" /* getError */])(this.state.errors, 'email')
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                   'div',
-                  { className: 'text-grey-darker text-sm pt-2' },
-                  'Be sure to check your spam filter for an email from support@yourapp.com'
+                  { className: 'mt-6 mb-2' },
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'button',
+                    { type: 'submit',
+                      className: 'border rounded-full p-3 text-white bg-indigo w-full font-bold hover:bg-indigo-dark' },
+                    'Email me reset instructions'
+                  )
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'div',
+                  { className: 'mt-6 pt-6 border-t border-grey-light' },
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'strong',
+                    { className: 'text-grey-darker' },
+                    'If you don\u2019t see your reset email\u2026'
+                  ),
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { className: 'text-grey-darker text-sm pt-2' },
+                    'Be sure to check your spam filter for an email from support@lmyapp.com'
+                  )
                 )
               )
+            )
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { className: 'py-4 text-xs text-grey-dark' },
+            'Never mind,',
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["b" /* Link */],
+              {
+                to: '/signin',
+                className: 'text-grey-darkest text-indigo' },
+              ' go back to the login screen'
             )
           )
         )

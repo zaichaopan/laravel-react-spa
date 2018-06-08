@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import DocumentTitle from 'react-document-title';
 import { destructServerErrors, hasError, getError } from '../../helpers/error';
 
@@ -44,46 +45,64 @@ class ForgotPassword extends Component {
           )
           }
 
-          <form
-            onSubmit={e => this.handleSubmit(e)}
-            method="POST"
-            className="border rounded bg-white border-grey-light w-3/4 sm:w-1/2 lg:w-2/5 xl:w-1/3 px-8 py-4">
+          <div className="p-4">
+            <Link
+              to="/"
+              className="text-grey-darkest text-bold no-underline text-indigo text-2xl">Laravel React SPA
+            </Link>
+          </div>
 
-            <h2 className="text-center mb-4 text-grey-darker">Can&#39;t log in?</h2>
-            <div className="mb-4">
-              <label className="block text-grey-darker text-sm font-bold mb-2" htmlFor="email">
-                Enter your email address
-              </label>
-              <input
-                value={this.state.email}
-                onChange={e => this.handleInputChange(e)}
-                id="email"
-                type="email"
-                name="email"
-                className={`appearance-none border rounded w-full py-2 px-3 text-grey-darker ${hasError(this.state.errors, 'email') ? 'border-red' : ''}`}
-                placeholder="e.g.jane@example.com"
-                required
-                autoFocus
-              />
-              {hasError(this.state.errors, 'email') &&
-                <p className="text-red text-xs pt-2">{getError(this.state.errors, 'email')}</p>
-              }
+          <div className="border rounded bg-white border-grey-light w-3/4 sm:w-1/2 lg:w-2/5 xl:w-1/3 px-8 py-4">
+            <form
+              onSubmit={e => this.handleSubmit(e)}
+              method="POST"
+            >
 
-              <div className="mt-6 mb-2">
-                <button type="submit"
-                  className="border rounded-full p-3 text-white bg-indigo w-full font-bold hover:bg-indigo-dark">
-                  Email me reset instructions
-                </button>
-              </div>
+              <h2 className="text-center mb-4 text-grey-darker">Can&#39;t log in?</h2>
+              <div className="mb-4">
+                <label className="block text-grey-darker text-sm font-bold mb-2" htmlFor="email">
+                  Enter your email address
+                </label>
+                <input
+                  value={this.state.email}
+                  onChange={e => this.handleInputChange(e)}
+                  id="email"
+                  type="email"
+                  name="email"
+                  className={`appearance-none border rounded w-full py-2 px-3 text-grey-darker ${hasError(this.state.errors, 'email') ? 'border-red' : ''}`}
+                  placeholder="e.g.jane@example.com"
+                  required
+                  autoFocus
+                />
+                {hasError(this.state.errors, 'email') &&
+                  <p className="text-red text-xs pt-2">{getError(this.state.errors, 'email')}</p>
+                }
 
-              <div className="mt-6 pt-6 border-t border-grey-light">
-                <strong className="text-grey-darker">If you don’t see your reset email…</strong>
-                <div className="text-grey-darker text-sm pt-2">
-                  Be sure to check your spam filter for an email from support@yourapp.com
+                <div className="mt-6 mb-2">
+                  <button type="submit"
+                    className="border rounded-full p-3 text-white bg-indigo w-full font-bold hover:bg-indigo-dark">
+                    Email me reset instructions
+                  </button>
+                </div>
+
+                <div className="mt-6 pt-6 border-t border-grey-light">
+                  <strong className="text-grey-darker">If you don’t see your reset email…</strong>
+                  <div className="text-grey-darker text-sm pt-2">
+                    Be sure to check your spam filter for an email from support@lmyapp.com
+                  </div>
                 </div>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
+
+          <div className="py-4 text-xs text-grey-dark">
+            Never mind,
+            <Link
+              to="/signin"
+              className="text-grey-darkest text-indigo"> go back to the login screen
+            </Link>
+          </div>
+
         </div>
       </DocumentTitle>
     );

@@ -1,0 +1,19 @@
+.auth-nav {
+    .right {
+        transition: all 0.3s ease-in-out;
+        transform: translate(0, 0);
+        &.mobile-hidden {
+            transform: translate(-100%, 0);
+        }
+    }
+}
+
+@media (min-width: $lg) {
+    .auth-nav {
+        .right {
+            &.mobile-hidden {
+                transform: translate(0, 0);
+            }
+        }
+    }
+}

@@ -4637,6 +4637,25 @@ button,
   z-index: auto;
 }
 
+.auth-nav .right {
+  -webkit-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+  -webkit-transform: translate(0, 0);
+          transform: translate(0, 0);
+}
+
+.auth-nav .right.mobile-hidden {
+  -webkit-transform: translate(-100%, 0);
+          transform: translate(-100%, 0);
+}
+
+@media (min-width: 992px) {
+  .auth-nav .right.mobile-hidden {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+}
+
 @media (min-width: 576px) {
   .sm\:list-reset {
     list-style: none;

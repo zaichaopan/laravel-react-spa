@@ -1,19 +1,29 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const GuestNav = () => {
   return (
-    <div className="container flex w-full justify-end">
+    <div className="w-full px-6 mx-auto flex items-center justify-between">
       <ul className="list-reset flex pt-4">
         <li className="px-2">
-          <NavLink to="/register"
+          <Link to=""
             className="no-underline text-grey-darker"
-            activeClassName="font-bold">Register</NavLink>
+          >Laravel React SPA</Link>
         </li>
-        <li className="px-2">
-          <NavLink to="/signin"
-            activeClassName="font-bold"
-            className="no-underline text-grey-darker">Sign in</NavLink>
+      </ul>
+
+      <ul className="list-reset flex pt-4">
+        <li className="px-4 py-2">
+          <Link to="/signin"
+            className="no-underline font-medium text-grey-darker"
+          >Sign in
+          </Link>
+        </li>
+
+        <li className="px-4 py-2 border bg-indigo rounded-full">
+          <Link to="/register"
+            className="no-underline text-white font-semibold"
+          >try it FREE</Link>
         </li>
       </ul>
     </div>
