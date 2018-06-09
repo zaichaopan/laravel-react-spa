@@ -4649,6 +4649,25 @@ button,
           transform: translate(-100%, 0);
 }
 
+.auth-nav .svg-full svg rect {
+  -webkit-transition: fill .3s ease, -webkit-transform .3s ease;
+  transition: fill .3s ease, -webkit-transform .3s ease;
+  transition: transform .3s ease, fill .3s ease;
+  transition: transform .3s ease, fill .3s ease, -webkit-transform .3s ease;
+  -webkit-transform-origin: left center;
+          transform-origin: left center;
+}
+
+.auth-nav .svg-full.mobile-nav-show svg rect:first-child {
+  -webkit-transform: scalex(.4);
+          transform: scalex(.4);
+}
+
+.auth-nav .svg-full.mobile-nav-show svg rect:last-child {
+  -webkit-transform: scalex(2.5);
+          transform: scalex(2.5);
+}
+
 @media (min-width: 992px) {
   .auth-nav .right.mobile-hidden {
     -webkit-transform: translate(0, 0);

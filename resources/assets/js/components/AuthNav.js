@@ -55,35 +55,28 @@ class AuthNav extends Component {
             <div
               onClick={() => this.toggleMobileNav()}
               id="sidebar-open"
-              className="z-50 flex px-6 items-center lg:hidden">
+              className='z-50 flex px-6 items-center lg:hidden text-grey-darker'>
 
-              {this.state.hideMobileNav
-                ? (<svg
-                  className="fill-current w-4 h-4 cursor-pointer text-grey"
-                  role="button" xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20">
-                  <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
-                </svg>)
-                : (<svg className="fill-current w-4 h-4 cursor-pointer text-grey"
-                  role="button"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20">
-                  <path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z">
-                  </path>
+              <span className={`svg-full ${!this.state.hideMobileNav ? 'mobile-nav-show' : ''}`}>
+                MENU &nbsp;
+                <svg className="fill-current" role="button" xmlns="http://www.w3.org/2000/svg" width="35" height="12" viewBox="0 0 35 12">
+                  <rect width="35" height="2"></rect>
+                  <rect y="5" width="24" height="2"></rect>
+                  <rect y="10" width="14" height="2"></rect>
                 </svg>
-                )}
+              </span>
             </div>
           </div>
 
           <div
-            className={`right lg:flex pt-8 lg:pt-0 right fixed lg:relative bg-indigo lg:bg-white w-full lg:w-auto h-screen lg:h-auto ${this.state.hideMobileNav ? 'mobile-hidden' : ''}`}>
+            className={`right lg:flex pt-8 lg:pt-0 right fixed lg:relative bg-white w-full lg:w-auto h-screen lg:h-auto ${this.state.hideMobileNav ? 'mobile-hidden' : ''}`}>
             <ul className="mt-8 py-8 lg:py-0 lg:mt-0 list-reset flex items-center flex-col lg:flex-row">
               <li
                 onClick={() => this.closeMobileNav()}
                 className="px-4 py-3 lg:py-0">
                 <NavLink
                   to='/home'
-                  className="capitalize text-2xl font-bold lg:text-sm lg:font-light text-white lg:text-grey-dark underline lg:no-underline">
+                  className="capitalize text-2xl font-bold lg:text-sm lg:font-light text-grey-darker underline lg:no-underline">
                   Home
                 </NavLink>
               </li>
@@ -92,7 +85,7 @@ class AuthNav extends Component {
                 className="px-4 py-3 lg:py-0">
                 <NavLink
                   to='/home'
-                  className="capitalize text-2xl font-bold lg:text-sm lg:font-light text-white lg:text-grey-dark underline lg:no-underline">
+                  className="capitalize text-2xl font-bold lg:text-sm lg:font-light text-grey-darker underline lg:no-underline">
                   Messages
                 </NavLink>
               </li>
@@ -102,7 +95,7 @@ class AuthNav extends Component {
                 className="px-4 py-3 lg:py-0">
                 <NavLink
                   to='/home'
-                  className="capitalize text-2xl font-bold lg:text-sm lg:font-light text-white lg:text-grey-dark underline lg:no-underline">
+                  className="capitalize text-2xl font-bold lg:text-sm lg:font-light text-grey-darker underline lg:no-underline">
                   Notifications
                 </NavLink>
               </li>
@@ -112,7 +105,7 @@ class AuthNav extends Component {
                 className="px-4 py-3 lg:py-0">
                 <NavLink
                   to={`/profile/${this.state.user.id}`}
-                  className="text-2xl font-bold lg:text-sm lg:font-light capitalize text-sm text-white lg:text-grey-dark underline lg:no-underline">
+                  className="text-2xl font-bold lg:text-sm lg:font-light capitalize text-sm text-grey-darker underline lg:no-underline">
                   {this.state.user.name}
                 </NavLink>
               </li>
@@ -121,7 +114,7 @@ class AuthNav extends Component {
                 className="px-4 py-3 lg:py-0">
                 <Link
                   to="/logout"
-                  className="capitalize text-2xl font-bold lg:text-sm lg:font-light text-white lg:text-grey-dark underline lg:no-underline">
+                  className="capitalize text-2xl font-bold lg:text-sm lg:font-light text-grey-darker underline lg:no-underline">
                   Logout</Link>
               </li>
             </ul>

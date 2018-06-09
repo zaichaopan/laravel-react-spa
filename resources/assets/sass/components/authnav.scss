@@ -6,6 +6,20 @@
             transform: translate(-100%, 0);
         }
     }
+    .svg-full {
+        svg rect {
+            transition: transform .3s ease, fill .3s ease;
+            transform-origin: left center;
+        }
+        &.mobile-nav-show {
+            svg rect:first-child {
+                transform: scalex(.4);
+            }
+            svg rect:last-child {
+                transform: scalex(2.5);
+            }
+        }
+    }
 }
 
 @media (min-width: $lg) {
