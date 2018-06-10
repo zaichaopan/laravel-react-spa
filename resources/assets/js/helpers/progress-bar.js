@@ -1,23 +1,16 @@
-//mport 'nprogress/nprogress.css';
 import NProgress from 'nprogress';
-
-const calculatePercentage = (loaded, total) => (Math.floor(loaded) / total);
 
 export default (instance) => {
   let requestsCounter = 0;
 
   const setupStartProgress = () => {
-    instance.interceptors.request.use((config) => {
-      requestsCounter++;
-      NProgress.start();
+    instance.interceptors.request.use(config => {
+      if (config.method === 'get') {
+        requestsCounter++;
+        NProgress.start();
+      }
       return config;
     });
-  };
-
-  const setupUpdateProgress = () => {
-    const update = e => NProgress.inc(calculatePercentage(e.loaded, e.total));
-    instance.defaults.onDownloadProgress = update;
-    instance.defaults.onUploadProgress = update;
   };
 
   const setupStopProgress = () => {
@@ -38,8 +31,6 @@ export default (instance) => {
     instance.interceptors.response.use(responseFunc, errorFunc);
   };
 
-  // NProgress.configure(config);
   setupStartProgress();
-  setupUpdateProgress();
   setupStopProgress();
 };
