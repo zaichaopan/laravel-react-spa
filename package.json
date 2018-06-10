@@ -29,6 +29,7 @@
     "dependencies": {
         "laravel-mix-tailwind": "^0.1.0",
         "localforage": "^1.7.1",
+        "nprogress": "^0.2.0",
         "react-click-outside": "^3.0.1",
         "react-document-title": "^2.0.3",
         "react-redux": "^5.0.7",

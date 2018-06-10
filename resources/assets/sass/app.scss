@@ -4,5 +4,10 @@
 
 @tailwind utilities;
 
+@import './lib/nprogress';
+
 @import './_variables';
 @import './components/authnav';
+
+
+
