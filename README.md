@@ -28,6 +28,18 @@ php artisan key:generate
 composer install && npm install
  ```
 
+- Run database migration
+
+```bash
+php artisan migrate:fresh
+```
+
+- Generate JWT secret
+
+```bash
+php artisan jwt:secret
+```
+
 - Compiling Assets
 
 ```bash
