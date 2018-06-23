@@ -47,7 +47,7 @@ class Register extends Component {
   render () {
     return (
       <DocumentTitle title={`Register - ${window.App.name}`}>
-        <div className="flex justify-center items-center w-full flex-col py-4 min-h-screen bg-grey-lighter">
+        <div className="flex justify-center items-center w-full flex-col py-4 min-h-screen bg-grey-lightest">
           <div className="p-4">
             <Link
               to="/"
@@ -59,9 +59,9 @@ class Register extends Component {
             <form onSubmit={e => this.handleSubmit(e)}
               method="POST"
             >
-              <h2 className="text-center mb-4 text-grey-darker">Register</h2>
+              <h2 className="text-center mt-4 mb-6 text-grey-darker">Register</h2>
               <div className="mb-4">
-                <label className="block text-grey-darker text-sm font-bold mb-2" htmlFor="username">
+                <label className="block text-grey-darkest text-sm font-bold mb-2" htmlFor="username">
                   Username
                 </label>
                 <input
@@ -81,8 +81,8 @@ class Register extends Component {
               </div>
 
               <div className="mb-4">
-                <label className="block text-grey-darker text-sm font-bold mb-2" htmlFor="email">
-                  Email
+                <label className="block text-grey-darkest text-sm font-bold mb-2" htmlFor="email">
+                  Email address
                 </label>
                 <input
                   value={this.state.email}
@@ -100,7 +100,7 @@ class Register extends Component {
               </div>
 
               <div className="mb-4">
-                <label className="block text-grey-darker text-sm font-bold mb-2" htmlFor="password"> Password </label>
+                <label className="block text-grey-darkest text-sm font-bold mb-2" htmlFor="password"> Password </label>
                 <input
                   value={this.state.password}
                   onChange={e => this.handleInputChange(e)}
@@ -117,7 +117,7 @@ class Register extends Component {
               </div>
 
               <div className="mb-4">
-                <label className="block text-grey-darker text-sm font-bold mb-2" htmlFor="password-confirmation"> Password confirmation </label>
+                <label className="block text-grey-darkest text-sm font-bold mb-2" htmlFor="password-confirmation"> Password confirmation </label>
                 <input
                   value={this.state.password_confirmation}
                   onChange={e => this.handleInputChange(e)}

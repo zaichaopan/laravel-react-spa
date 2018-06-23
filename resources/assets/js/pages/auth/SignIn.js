@@ -47,7 +47,7 @@ class SignIn extends Component {
   render () {
     return (
       <DocumentTitle title={`Sign in - ${window.App.name}`}>
-        <div className="flex justify-center items-center w-full py-4 flex-col min-h-screen bg-grey-lighter">
+        <div className="flex justify-center items-center w-full py-4 flex-col min-h-screen bg-grey-lightest">
 
           <div className="p-4">
             <Link
@@ -59,9 +59,9 @@ class SignIn extends Component {
           <div className="border rounded bg-white border-grey-light w-3/4 sm:w-1/2 lg:w-2/5 xl:w-1/4 px-8 py-4">
             <form onSubmit={e => this.handleSubmit(e)}
               method="POST">
-              <h2 className="text-center mb-4 text-grey-darker">Sign in</h2>
+              <h2 className="text-center mt-4 mb-6 text-grey-darkest">Sign in to Level</h2>
               <div className="mb-4">
-                <label className="block text-grey-darker text-sm font-bold mb-2" htmlFor="email">
+                <label className="block text-grey-darkest text-sm font-bold mb-2" htmlFor="email">
                   Email address
                 </label>
                 <input
@@ -83,7 +83,7 @@ class SignIn extends Component {
               </div>
 
               <div className="mb-6">
-                <label className="block text-grey-darker text-sm font-bold mb-2" htmlFor="password"> Password </label>
+                <label className="block text-grey-darkest text-sm font-bold mb-2" htmlFor="password"> Password </label>
                 <input
                   value={this.state.password}
                   onChange={e => this.handleInputChange(e)}
