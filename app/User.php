@@ -2,14 +2,15 @@
 
 namespace App;
 
+use App\Traits\Socialtables;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use  App\Notifications\ResetPassword as ResetPasswordNotification;
+use  Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Notifications\ResetPassword as ResetPasswordNotification;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use Notifiable;
+    use Notifiable, Socialtables;
 
     /**
      * The attributes that are mass assignable.

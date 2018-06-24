@@ -30,6 +30,17 @@ export const signInUser = credentials => dispatch => {
   });
 };
 
+export const googleSignIn = credentials => dispatch => {
+  return window.axios.post('/api/google/signin', credentials).then(({ data: { data, meta } }) => {
+    setToken(meta.token);
+    dispatch(setUserData(data));
+    dispatch(setAuthenticated(true));
+    return Promise.resolve({ data, meta });
+  }).catch(error => {
+    return Promise.reject(error);
+  });
+};
+
 export const registerUser = credentials => dispatch => {
   return window.axios.post('/api/register', credentials
   ).then(({ data: { data, meta } }) => {

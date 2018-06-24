@@ -3,11 +3,13 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import DocumentTitle from 'react-document-title';
 import PropTypes from 'prop-types';
-import { registerUser } from '../../actions/auth';
+import { registerUser, googleSignIn } from '../../actions/auth';
 import { destructServerErrors, hasError, getError } from '../../helpers/error';
+import GoogleSignIn from '../../components/GoogleSignIn';
 
 const propTypes = {
   registerUser: PropTypes.func.isRequired,
+  googleSignIn: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired
 };
 
@@ -42,6 +44,12 @@ class Register extends Component {
         ...{ [e.target.name]: '' }
       }
     });
+  }
+
+  handleGoogleSignInSuccess (credentials) {
+    this.props.googleSignIn(credentials)
+      .then(response => this.registerSuccess())
+      .catch(error => this.setState({ errors: destructServerErrors(error) })); ;
   }
 
   render () {
@@ -137,6 +145,10 @@ class Register extends Component {
             <span>Already have an account? </span>
             <Link to="/signin" className="no-underline text-grey-darker font-bold"> Sign in</Link>
           </div>
+
+          <div className="border rounded bg-white border-grey-light w-3/4 sm:w-1/2 lg:w-2/5 xl:w-1/4 px-8 py-4">
+            <GoogleSignIn googleSignInSuccess={(credentials) => this.handleGoogleSignInSuccess(credentials)} />
+          </div>
         </div>
       </DocumentTitle>
     );
@@ -145,6 +157,6 @@ class Register extends Component {
 
 Register.propTypes = propTypes;
 
-const mapDispatchToProps = { registerUser };
+const mapDispatchToProps = { registerUser, googleSignIn };
 
 export default connect(null, mapDispatchToProps)(withRouter(Register));

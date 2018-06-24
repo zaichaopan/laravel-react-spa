@@ -3,14 +3,15 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import DocumentTitle from 'react-document-title';
-import { signInUser } from '../../actions/auth';
+import { signInUser, googleSignIn } from '../../actions/auth';
 import { getIntendedUrl } from '../../helpers/auth';
 import { destructServerErrors, hasError, getError } from '../../helpers/error';
+import GoogleSignIn from '../../components/GoogleSignIn';
 
 const propTypes = {
   signInUser: PropTypes.func.isRequired,
+  googleSignIn: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired
-
 };
 
 class SignIn extends Component {
@@ -42,6 +43,12 @@ class SignIn extends Component {
         ...{ [e.target.name]: '' }
       }
     });
+  }
+
+  handleGoogleSignInSuccess (credentials) {
+    this.props.googleSignIn(credentials)
+      .then(response => this.signInSuccess())
+      .catch(error => this.setState({ errors: destructServerErrors(error) })); ;
   }
 
   render () {
@@ -113,6 +120,10 @@ class SignIn extends Component {
               <strong>Help:</strong> <Link to="/forgot-password" className="no-underline text-grey-dark text-xs">Reset Password</Link>
             </div>
           </div>
+
+          <div className="border rounded bg-white border-grey-light w-3/4 sm:w-1/2 lg:w-2/5 xl:w-1/4 px-8 py-4">
+            <GoogleSignIn googleSignInSuccess={(credentials) => this.handleGoogleSignInSuccess(credentials)} />
+          </div>
         </div>
       </DocumentTitle>
     );
@@ -122,7 +133,8 @@ class SignIn extends Component {
 SignIn.propTypes = propTypes;
 
 const mapDispatchToProps = {
-  signInUser
+  signInUser,
+  googleSignIn
 };
 
 export default connect(null, mapDispatchToProps)(withRouter(SignIn));
