@@ -23,6 +23,7 @@ class GoogleSignIn extends Component {
         });
       });
     } catch (e) {
+      console.log(e);
     }
   }
 
@@ -43,10 +44,14 @@ class GoogleSignIn extends Component {
         id="g-signin-btn"
         className="w-full text-grey-darker"
         onClick={() => this.handleAuthClick()}>Use My
-
-        <img width="72" height="24" className="align-middle mx-2" alt="Google" title="Google" src="/images/icons/google.svg" />
-        Account</button>
-
+        <img width="72"
+          height="24"
+          className="align-middle mx-2"
+          alt="Google"
+          title="Google"
+          src="/images/icons/google.svg" />
+        Account
+      </button>
     );
   }
 }
