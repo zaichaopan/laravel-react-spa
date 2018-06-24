@@ -8,6 +8,8 @@ class SocialiteUser
 
     protected $id;
 
+    protected $name;
+
     public function __construct(array $payload)
     {
         $this->email = $payload['email'];
