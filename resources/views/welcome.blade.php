@@ -14,8 +14,8 @@
     <!-- Scripts -->
     <script>
         window.App = {!! json_encode([
-            'name' => env('APP_NAME'),
-            'google_client_id' => env('GOOGLE_CLIENT_ID')
+            'name' => config('app.name'),
+            'google_client_id' => config('services.google.client_id')
         ]) !!};
     </script>
     <script src="{{ asset('js/app.js') }}" defer></script>
