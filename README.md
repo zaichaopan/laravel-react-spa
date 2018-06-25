@@ -16,6 +16,12 @@ Starter Boilerplate SPA made with Laravel and React.
 ## Installation
 
 - Clone the repo
+- Installing all Composer & NPM dependencies.
+
+```bash
+composer install && npm install
+```
+
 - Copy .env.example to .env
 - Generate app key
 
@@ -28,12 +34,6 @@ php artisan key:generate
 ```env
 GOOGLE_CLIENT_ID=
 ```
-
-- Installing all Composer & NPM dependencies.
-
-```bash
-composer install && npm install
- ```
 
 - Run database migration
 
