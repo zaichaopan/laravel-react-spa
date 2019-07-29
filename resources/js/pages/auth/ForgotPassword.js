@@ -15,10 +15,12 @@ class ForgotPassword extends Component {
 
   handleSubmit (e) {
     e.preventDefault();
+    console.log('called');
     window.axios.post('/api/password/email', { email: this.state.email })
       .then(({ data: { status } }) => {
         this.setState({ 'resetMessage': status });
       }).catch(error => {
+        console.log('error', error);
         this.setState({ errors: destructServerErrors(error) });
       });
   }

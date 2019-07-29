@@ -76,7 +76,7 @@ class ResetPassword extends Component {
             <div className="mb-4">
 
               <label className="block text-grey-darker text-sm font-bold mb-2" htmlFor="email">
-                                Enter your email address
+                Enter your email address
               </label>
               <input
                 value={this.state.email}
@@ -91,7 +91,7 @@ class ResetPassword extends Component {
               />
 
               {hasError(this.state.errors, 'email') &&
-                                <p className="text-red text-xs pt-2">{getError(this.state.errors, 'email')}</p>
+                <p className="text-red text-xs pt-2">{getError(this.state.errors, 'email')}</p>
               }
 
             </div>
@@ -104,11 +104,11 @@ class ResetPassword extends Component {
                 id="password"
                 name="password"
                 className={`appearance-none border rounded w-full py-2 px-3 text-grey-darker  ${hasError(this.state.errors, 'password') ? 'border-red' : ''}`}
-                minLength={6}
+                minLength={8}
                 required />
 
               {hasError(this.state.errors, 'password') &&
-                                <p className="text-red text-xs pt-2">{getError(this.state.errors, 'password')}</p>
+                <p className="text-red text-xs pt-2">{getError(this.state.errors, 'password')}</p>
               }
             </div>
 
@@ -127,7 +127,7 @@ class ResetPassword extends Component {
             <div className="mt-6 mb-2">
               <button type="submit"
                 className="border rounded-full p-3 text-white bg-indigo w-full font-bold hover:bg-indigo-dark">
-                                Reset
+                Reset
               </button>
             </div>
           </form>
