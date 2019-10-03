@@ -1,4 +1,4 @@
-@tailwind preflight;
+@tailwind base;
 
 @tailwind components;
 
@@ -8,6 +8,3 @@
 
 @import './_variables';
 @import './components/authnav';
-
-
-

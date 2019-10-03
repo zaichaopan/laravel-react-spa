@@ -52,7 +52,7 @@ class ResetPassword extends Component {
   render () {
     return (
       <DocumentTitle title={`Reset password - ${window.App.name}`}>
-        <div className="flex justify-center items-center w-full py-4 flex-col min-h-screen bg-grey-lighter">
+        <div className="flex justify-center items-center w-full py-4 flex-col min-h-screen bg-grey-300">
 
           {this.state.resetMessage !== '' && (
             <div className="bg-white border-l-4 border-blue text-sm text-grey-darker p-4 mb-4 w-3/4 sm:w-1/2 lg:w-2/5 xl:w-1/3" role="alert">
@@ -126,7 +126,7 @@ class ResetPassword extends Component {
 
             <div className="mt-6 mb-2">
               <button type="submit"
-                className="border rounded-full p-3 text-white bg-indigo w-full font-bold hover:bg-indigo-dark">
+                className="border rounded-full p-3 text-white bg-indigo-500 w-full font-bold hover:bg-indigo-500-dark">
                 Reset
               </button>
             </div>

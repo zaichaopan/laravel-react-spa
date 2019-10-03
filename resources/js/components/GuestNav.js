@@ -7,7 +7,7 @@ const GuestNav = () => {
       <ul className="list-reset flex pt-4">
         <li className="px-2">
           <Link to=""
-            className="no-underline text-grey-darker"
+            className="no-underline text-gray-700 uppercase font-thin"
           >Laravel React SPA</Link>
         </li>
       </ul>
@@ -20,7 +20,7 @@ const GuestNav = () => {
           </Link>
         </li>
 
-        <li className="px-4 py-2 border bg-indigo rounded-full">
+        <li className="px-4 py-2 border bg-indigo-500 rounded-lg">
           <Link to="/register"
             className="no-underline text-white font-semibold"
           >try it FREE</Link>

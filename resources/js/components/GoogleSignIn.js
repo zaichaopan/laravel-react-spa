@@ -43,14 +43,14 @@ class GoogleSignIn extends Component {
       <button type="button"
         id="g-signin-btn"
         className="w-full text-grey-darker"
-        onClick={() => this.handleAuthClick()}>Use My
-        <img width="72"
-          height="24"
-          className="align-middle mx-2"
+        onClick={() => this.handleAuthClick()}>
+        <img width="32"
+
+          className="align-middle mx-2 rounded-full"
           alt="Google"
           title="Google"
           src="/images/icons/google.svg" />
-        Account
+
       </button>
     );
   }

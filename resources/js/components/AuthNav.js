@@ -47,7 +47,7 @@ class AuthNav extends Component {
                 <NavLink
                   to="/home"
                   activeClassName="font-bold"
-                  className="text-grey-darkest no-underline text-indigo">Laravel React SPA
+                  className="text-gray-800 no-underline text-indigo">Laravel React SPA
                 </NavLink>
               </li>
             </ul>
@@ -55,7 +55,7 @@ class AuthNav extends Component {
             <div
               onClick={() => this.toggleMobileNav()}
               id="sidebar-open"
-              className='z-50 flex px-6 items-center lg:hidden text-grey-darker'>
+              className='z-50 flex px-6 items-center lg:hidden text-gray-700'>
 
               <span className={`svg-full ${!this.state.hideMobileNav ? 'mobile-nav-show' : ''}`}>
                 MENU &nbsp;
@@ -76,7 +76,7 @@ class AuthNav extends Component {
                 className="px-4 py-3 lg:py-0">
                 <NavLink
                   to='/home'
-                  className="capitalize text-2xl font-bold lg:text-sm lg:font-light text-grey-darker underline lg:no-underline">
+                  className="capitalize text-2xl font-bold lg:text-sm lg:font-light text-gray-700 underline lg:no-underline">
                   Home
                 </NavLink>
               </li>
@@ -85,7 +85,7 @@ class AuthNav extends Component {
                 className="px-4 py-3 lg:py-0">
                 <NavLink
                   to='/home'
-                  className="capitalize text-2xl font-bold lg:text-sm lg:font-light text-grey-darker underline lg:no-underline">
+                  className="capitalize text-2xl font-bold lg:text-sm lg:font-light text-gray-700 underline lg:no-underline">
                   Messages
                 </NavLink>
               </li>
@@ -95,7 +95,7 @@ class AuthNav extends Component {
                 className="px-4 py-3 lg:py-0">
                 <NavLink
                   to='/home'
-                  className="capitalize text-2xl font-bold lg:text-sm lg:font-light text-grey-darker underline lg:no-underline">
+                  className="capitalize text-2xl font-bold lg:text-sm lg:font-light text-gray-700 underline lg:no-underline">
                   Notifications
                 </NavLink>
               </li>
@@ -105,7 +105,7 @@ class AuthNav extends Component {
                 className="px-4 py-3 lg:py-0">
                 <NavLink
                   to={`/profile/${this.state.user.id}`}
-                  className="text-2xl font-bold lg:text-sm lg:font-light capitalize text-sm text-grey-darker underline lg:no-underline">
+                  className="text-2xl font-bold lg:text-sm lg:font-light capitalize text-sm text-gray-700 underline lg:no-underline">
                   {this.state.user.name}
                 </NavLink>
               </li>
@@ -114,7 +114,7 @@ class AuthNav extends Component {
                 className="px-4 py-3 lg:py-0">
                 <Link
                   to="/logout"
-                  className="capitalize text-2xl font-bold lg:text-sm lg:font-light text-grey-darker underline lg:no-underline">
+                  className="capitalize text-2xl font-bold lg:text-sm lg:font-light text-gray-700 underline lg:no-underline">
                   Logout</Link>
               </li>
             </ul>

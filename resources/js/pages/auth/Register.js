@@ -55,21 +55,33 @@ class Register extends Component {
   render () {
     return (
       <DocumentTitle title={`Register - ${window.App.name}`}>
-        <div className="flex justify-center items-center w-full flex-col py-4 min-h-screen bg-grey-lightest">
-          <div className="p-4">
-            <Link
-              to="/"
-              className="text-grey-darkest text-bold no-underline text-indigo text-2xl">Laravel React SPA
-            </Link>
+        <div className="flex justify-center items-center w-full flex-col py-4 min-h-screen bg-gray-200">
+
+          <div className="p-8 flex flex-col items-center">
+            <div>
+              <Link
+                to="/"
+              >  <img width="48"
+                  className="align-middle mx-2"
+                  alt="Google"
+                  title="Google"
+                  src="/images/icons/laravel.svg" />
+              </Link>
+            </div>
+            <div className="text-2xl leading-loose">
+              Start your free trial
+            </div>
+            <div className="text-gray-800">
+              <span className="text-gray-700">Or</span> <Link to="/signin" className="underline">sign in to your account</Link>
+            </div>
           </div>
 
-          <div className="bg-white border rounded border-grey-light w-3/4 sm:w-1/2 lg:w-2/5 xl:w-1/4 px-8 py-4">
+          <div className="bg-white border rounded border-grey-light w-3/4 sm:w-1/2 lg:w-2/5 xl:w-1/4 px-8 py-4 shadow">
             <form onSubmit={e => this.handleSubmit(e)}
               method="POST"
             >
-              <h2 className="text-center mt-4 mb-6 text-grey-darker">Register</h2>
-              <div className="mb-4">
-                <label className="block text-grey-darkest text-sm font-bold mb-2" htmlFor="username">
+              <div className="mb-4 mt-2">
+                <label className="block text-gray-700 text-sm mb-1 font-bold" htmlFor="username">
                   Username
                 </label>
                 <input
@@ -78,8 +90,7 @@ class Register extends Component {
                   type="text"
                   id="username"
                   name="name"
-                  className="appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight"
-                  placeholder="jane doe"
+                  className="appearance-none border rounded w-full py-1 px-3 bg-gray-100 leading-tight"
                   required
                   autoFocus />
 
@@ -89,7 +100,7 @@ class Register extends Component {
               </div>
 
               <div className="mb-4">
-                <label className="block text-grey-darkest text-sm font-bold mb-2" htmlFor="email">
+                <label className="block text-gray-700 text-sm font-bold mb-1" htmlFor="email">
                   Email address
                 </label>
                 <input
@@ -98,8 +109,7 @@ class Register extends Component {
                   id="email"
                   name="email"
                   type="email"
-                  className={`appearance-none border rounded w-full py-2 px-3 text-grey-darker  ${hasError(this.state.errors, 'name') ? 'border-red' : ''}`}
-                  placeholder="jane@example.com"
+                  className={`appearance-none border rounded w-full py-1 px-3 bg-gray-100 ${hasError(this.state.errors, 'name') ? 'border-red' : ''}`}
                   required />
 
                 {hasError(this.state.errors, 'email') &&
@@ -108,14 +118,14 @@ class Register extends Component {
               </div>
 
               <div className="mb-4">
-                <label className="block text-grey-darkest text-sm font-bold mb-2" htmlFor="password"> Password </label>
+                <label className="block text-gray-700 text-sm font-bold mb-1" htmlFor="password"> Password </label>
                 <input
                   value={this.state.password}
                   onChange={e => this.handleInputChange(e)}
                   type="password"
                   id="password"
                   name="password"
-                  className={`appearance-none border rounded w-full py-2 px-3 text-grey-darker  ${hasError(this.state.errors, 'password') ? 'border-red' : ''}`}
+                  className={`appearance-none border rounded w-full py-1 px-3 bg-gray-100  ${hasError(this.state.errors, 'password') ? 'border-red' : ''}`}
                   minLength={6}
                   required />
 
@@ -125,29 +135,30 @@ class Register extends Component {
               </div>
 
               <div className="mb-4">
-                <label className="block text-grey-darkest text-sm font-bold mb-2" htmlFor="password-confirmation"> Password confirmation </label>
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password-confirmation"> Password confirmation </label>
                 <input
                   value={this.state.password_confirmation}
                   onChange={e => this.handleInputChange(e)}
                   type="password"
                   id="password-confirmation"
                   name="password_confirmation"
-                  className={`appearance-none border rounded w-full py-2 px-3 text-grey-darker  ${hasError(this.state.errors, 'password') ? 'border-red' : ''}`}
+                  className={`appearance-none border rounded w-full py-1 px-3 bg-gray-100 ${hasError(this.state.errors, 'password') ? 'border-red' : ''}`}
                   required />
               </div>
 
-              <div className="mb-2">
-                <button className="border rounded-full p-3 text-white bg-indigo w-full font-bold hover:bg-indigo-dark">Register</button>
+              <div className="mb-4">
+                <button className="border rounded p-2 text-white bg-indigo-500 w-full font-bold hover:bg-indigo-500-dark">Register</button>
+              </div>
+
+              <div className="flex flex-col items-center text-sm text-gray-600">
+                <div className="pb-2">
+                  Or continue with
+                </div>
+                <div>
+                  <GoogleSignIn googleSignInSuccess={(credentials) => this.handleGoogleSignInSuccess(credentials)} />
+                </div>
               </div>
             </form>
-          </div>
-          <div className="p-4 text-grey-dark text-sm">
-            <span>Already have an account? </span>
-            <Link to="/signin" className="no-underline text-grey-darker font-bold"> Sign in</Link>
-          </div>
-
-          <div className="border rounded bg-white border-grey-light w-3/4 sm:w-1/2 lg:w-2/5 xl:w-1/4 px-8 py-4">
-            <GoogleSignIn googleSignInSuccess={(credentials) => this.handleGoogleSignInSuccess(credentials)} />
           </div>
         </div>
       </DocumentTitle>
