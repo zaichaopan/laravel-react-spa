@@ -8,3 +8,7 @@
 
 @import './_variables';
 @import './components/authnav';
+
+input:invalid {
+    box-shadow: none;
+}

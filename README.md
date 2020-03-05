@@ -4,10 +4,10 @@ Starter Boilerplate SPA made with Laravel and React.
 
 ## Features
 
-- Laravel 6, React, Redux, React Router
+- Laravel 7, React, React Router
+- React Hook, React Context for state management
 - Authentication with JWT
 - Login, register, reset password
-- Socialite integration (Google Account Sign in)
 - Flexible Page Layout
 - Flexible, Protected Routing
 - Tailwind CSS
@@ -27,12 +27,6 @@ composer install && npm install
 
 ```bash
 php artisan key:generate
-```
-
-- Create an Application in the Google API Console, Add google client id to the env file.
-
-```env
-GOOGLE_CLIENT_ID=
 ```
 
 - Run database migration

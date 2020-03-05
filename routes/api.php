@@ -16,15 +16,12 @@ Route::name('api.')->namespace('Api')->group(function () {
     // Unprotected routes
     Route::group(['middleware' => 'guest:api'], function () {
         Route::namespace('Auth')->group(function () {
-            Route::post('signin', 'SignInController@signIn')->name('signin');
-            Route::post('register', 'RegisterController@register')->name('register');
+            Route::post('login', 'LoginController')->name('login');
+            Route::post('register', 'RegisterController')->name('register');
 
             // Password Reset Routes...
             Route::post('password/email', 'ForgotPasswordController@sendResetLinkEmail');
             Route::post('password/reset', 'ResetPasswordController@reset');
-
-            // Socialite Login
-            Route::post('google/signin', 'GoogleSignInController@SignIn');
         });
     });
 

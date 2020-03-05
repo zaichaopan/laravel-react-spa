@@ -1,19 +1,15 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import AuthNav from '../components/AuthNav';
-import GuestNav from '../components/GuestNav';
+import AuthNav from '../components/auth-nav';
+import GuestNav from '../components/guest-nav';
+import { useAuth } from '../context/auth';
 
-const propTypes = {
-  authenticated: PropTypes.bool.isRequired
-};
-
-const NotFound = (props) => {
-  const nav = props.authenticated ? <AuthNav /> : <GuestNav />;
+function NotFound () {
+  let { authenticated } = useAuth();
 
   return (
     <div className="flex flex-col min-h-screen">
-      {nav}
+
+      { authenticated ? <AuthNav /> : <GuestNav /> }
 
       <div className="flex flex-col flex-1 items-center">
         <h1 className="py-8">Sorry, that page isn’t here.</h1>
@@ -25,6 +21,4 @@ const NotFound = (props) => {
   );
 };
 
-NotFound.propTypes = propTypes;
-const mapStateToProps = ({ auth: { authenticated } }) => ({ authenticated });
-export default connect(mapStateToProps)(NotFound);
+export default NotFound;

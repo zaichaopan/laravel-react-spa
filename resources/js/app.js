@@ -1,13 +1,12 @@
-import './bootstrap';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import store from './store';
 import App from './router';
-import { Provider } from 'react-redux';
+
+import { AuthProvider } from './context/auth';
 
 ReactDOM.render(
-  <Provider store={store}>
+  <AuthProvider>
     <App />
-  </Provider>,
+  </AuthProvider>,
   document.getElementById('app')
 );

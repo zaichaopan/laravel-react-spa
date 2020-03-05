@@ -9,11 +9,11 @@ use App\Http\Resources\UserResource;
 
 class RegisterController extends Controller
 {
-    public function register(Request $request)
+    public function __invoke(Request $request)
     {
         $this->validate($request, [
             'email' => 'email|required|unique:users,email',
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|min:4|max:255',
             'password' => 'required|string|min:8|confirmed'
         ]);
 
