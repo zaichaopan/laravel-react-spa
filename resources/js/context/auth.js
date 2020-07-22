@@ -22,8 +22,8 @@ function AuthProvider ({ children }) {
 
   useEffect(() => {
     initAuth().then((user) => {
-      setInitializing(false);
       setCurrentUser(user);
+      setInitializing(false);
     });
   }, []);
 
